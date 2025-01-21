@@ -1,0 +1,29 @@
+@mixin typeKit($fontSize, $lineHeight, $fontWeight) {
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    font-weight: $fontWeight;
+}
+
+@mixin flex($direction, $justify, $align, $wrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap;
+}
+
+@mixin sectionSpacing {
+    margin: 0 0.8rem;
+    padding: 0.5rem 0;
+}
+
+@mixin image {
+    max-width: 100%;
+    height: auto;
+}
+
+@mixin header {
+    @include typeKit(1.5rem, null, 550);
+    padding: 1rem 0 1rem 0;
+    letter-spacing: 0.05rem;
+}

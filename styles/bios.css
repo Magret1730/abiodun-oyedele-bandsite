@@ -1,0 +1,161 @@
+@font-face {
+  font-family: "NunitoSans";
+  src: url("../fonts/nunitoSans/static/NunitoSans_10pt-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NunitoSans";
+  src: url("../fonts/nunitoSans/static/NunitoSans_10pt-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "NunitoSans";
+  src: url("../fonts/nunitoSans/static/NunitoSans_10pt-Bold.ttf");
+  font-weight: 700;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "NunitoSans", sans-serif;
+}
+
+.nav {
+  background-color: #323232;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 0 0 0;
+}
+.nav__bandsite {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 400;
+}
+.nav__items {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.nav__link {
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 0.1rem 1rem 0.4rem 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  font-weight: 300;
+}
+.nav__link:visited {
+  border-bottom: 4px solid red;
+  font-weight: 700;
+  color: #AFAFAF;
+}
+.nav__link:hover {
+  color: #AFAFAF;
+  font-weight: 500;
+  border-bottom: 4px solid white;
+}
+
+.hero {
+  background-color: #323232;
+  background-image: url("../assets/images/hero-bio.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 6rem;
+  position: relative;
+  background-blend-mode: soft-light;
+}
+.hero__text {
+  color: #FFFFFF;
+  position: absolute;
+  top: 40%;
+  left: 3%;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.about {
+  margin: 0 0.8rem;
+  padding: 0.5rem 0;
+  background-color: #FFFFFF;
+}
+.about__header {
+  font-size: 1.5rem;
+  font-weight: 550;
+  padding: 1rem 0 1rem 0;
+  letter-spacing: 0.05rem;
+}
+.about__image {
+  max-width: 100%;
+  height: auto;
+}
+.about__quote, .about__quotename {
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  padding-top: 0.5rem;
+  word-spacing: 0.05rem;
+}
+.about__article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.about__article-header {
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 310;
+}
+.about__texts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 300;
+}
+.about__text {
+  margin: 1rem 0;
+}
+
+.gallery {
+  margin: 0 0.8rem;
+  padding: 0.5rem 0;
+  background-color: #FAFAFA;
+}
+.gallery__header {
+  font-size: 1.5rem;
+  font-weight: 550;
+  padding: 1rem 0 1rem 0;
+  letter-spacing: 0.05rem;
+}
+.gallery__photo {
+  max-width: 100%;
+  height: auto;
+  margin: 0.4rem 0;
+}
+
+.footer {
+  background-color: #323232;
+  color: #FFFFFF;
+}
+.footer__section {
+  border: 2px dashed red;
+  margin: 0 0.8rem;
+  padding: 0.5rem 0;
+}/*# sourceMappingURL=bios.css.map */

@@ -1,0 +1,140 @@
+@use "./partials/global" as *;
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+@use "./partials/typography" as *;
+
+// Nav styling
+.nav {
+    background-color: $primary-color-black;
+    @include flex(column, null, center, null);
+    // padding: 1rem 0 1rem 0;
+    padding: 0.8rem 0 0 0;
+
+    &__bandsite {
+        text-decoration: none;
+        // padding-top: 1rem;
+        color: $primary-color-white;
+        @include typeKit(1.5rem, 2rem, 400);
+    }
+
+    &__items {
+        @include flex(row, center, center, null);
+        // padding: 1rem 0 1rem 0;
+        width: 100%;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $primary-color-white;
+        padding: 0.1rem 1rem 0.4rem 1rem;
+        width: 100%;
+        @include flex(row, center, center, null);
+        @include typeKit(.875rem, 1.375rem, 300);
+        // border-bottom: 2px solid red;
+
+        &:visited {
+            border-bottom: 4px solid red;
+            font-weight: 700;
+            color: $primary-color-silver;
+        }
+
+        &:hover {
+            color: $primary-color-silver;
+            font-weight: 500;
+            border-bottom: 4px solid white;
+        }
+    }
+}
+
+// Main styling
+// Hero Section
+.hero {
+    background-color: $primary-color-black;
+    background-image: url("../assets/images/hero-bio.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 6rem;
+    position: relative;
+    background-blend-mode: soft-light;
+
+    &__text {
+        color: $primary-color-white;
+        position: absolute;
+        top: 40%;
+        left: 3%;
+        @include typeKit(1.5rem, null, 500);
+    }
+}
+
+// About styling
+.about {
+    @include sectionSpacing;
+    background-color: $primary-color-white;
+
+    &__header {
+        @include header;
+    }
+
+    &__image {
+        @include image;
+    }
+
+    &__quote {
+        @include typeKit(0.9rem, 1.5rem, 500);
+        padding-top: 0.5rem;
+        word-spacing: 0.05rem;
+    }
+
+    &__quotename {
+        @extend .about__quote;
+        // padding-bottom: 1rem;
+    }
+
+    &__article {
+        @include flex(column, center, flex-start, null);
+    }
+
+    &__article-header {
+        padding-top: 1rem;
+        @include typeKit(0.9rem, null, 310);
+    }
+
+    &__texts {
+        @include flex(column, flex-start, center, wrap);
+        @include typeKit(.8125rem, 1.125rem, 300);
+    }
+
+    &__text {
+        margin: 1rem 0;
+    }
+}
+
+.gallery {
+    @include sectionSpacing;
+    background-color: $secondary-color-alabaster;
+
+    &__header {
+        @include header;
+    }
+
+    &__photos {
+        // @include flex(column, center, center, null);
+    }
+
+    &__photo {
+        @include image;
+        margin: 0.4rem 0;
+    }
+}
+
+// Footer stylings
+.footer {
+    background-color: $primary-color-black;
+    color: $primary-color-white;
+
+    &__section {
+        border: 2px dashed red;
+        @include sectionSpacing;
+    }
+}
+
