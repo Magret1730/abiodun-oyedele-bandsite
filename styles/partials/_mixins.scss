@@ -12,18 +12,60 @@
     flex-wrap: $wrap;
 }
 
-@mixin sectionSpacing {
+@mixin sectionSpacingMobile {
     margin: 0 0.8rem;
     padding: 0.5rem 0;
 }
 
-@mixin image {
+// @mixin sectionSpacingTablet {
+//     margin: 0 1.2rem;
+//     padding: 1rem 0;
+// }
+
+@mixin imageMobile {
     max-width: 100%;
     height: auto;
 }
 
-@mixin header {
+@mixin imageTablet {
+    max-width: 80%;
+    margin: 0 5rem;
+}
+
+@mixin imageDesktop {
+    width: 90%;
+    // margin: 0 1rem 0 9rem;
+    margin: 0 auto;
+    height: 70vh;
+}
+
+@mixin headerMobile {
     @include typeKit(1.5rem, null, 550);
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 0;
     letter-spacing: 0.05rem;
+}
+
+@mixin headerTablet {
+    @include typeKit(2.3rem, null, 550);
+    padding: 1rem 0 1rem 1.2rem;
+}
+
+@mixin headerDesktop {
+    @include typeKit(2.6rem, null, 550);
+    padding: 1rem 0rem 1rem 6rem;
+}
+
+// DESKTOP screen sizes are defined at 1280px, but are applied to screen sizes 1280px and greater.
+// TABLET screen sizes are defined at 768px, but are applied to screen sizes from 768px to 1279px.
+// MOBILE screen sizes are defined at 320px, but are applied to screen sizes 767px and below.
+@mixin tablet-breakpoint {
+    @media (min-width: 768px) and (max-width: 1279px) {
+        @content;
+    }
+}
+
+@mixin desktop-breakpoint {
+    @media (min-width: 1280px) {
+        @content;
+    }
 }
