@@ -5,26 +5,56 @@
 
 // Nav styling
 .nav {
-    background-color: $primary-color-black;
+    background-color: $primary-bg-color;
     @include flex(column, null, center, null);
-    padding: 0.8rem 0 0 0;
+    padding: 0.8rem 1rem 0 1rem;
+
+    @include tablet-breakpoint {
+        @include flex(row, flex-start, center, null);
+        margin: 0;
+        padding: 0 2.25rem;
+        gap: 3rem;
+    }
+
+    @include desktop-breakpoint {
+        @include flex(row, flex-start, center, null);
+        margin: 0;
+        padding: 2.5rem 0 3rem 1.5rem;
+        gap: 3rem;
+    }
 
     &__logo {
-        &-bandsite {
-            text-decoration: none;
-            color: $primary-color-white;
-            @include typeKit(1.5rem, 2rem, 400);
-        }
-
         @include tablet-breakpoint {
             width: 40%;
             font-size: 2.2rem;
         }
 
         @include desktop-breakpoint {
-            width: 40%;
-            font-size: 2.2rem;
+
         }
+
+        &-bandsite {
+            text-decoration: none;
+            color: $primary-text-color;
+            @include type-kit(1.5rem, 2rem, 400);
+
+            @include desktop-breakpoint {
+                width: 20%;
+                font-size: 2rem;
+                // padding: 3rem 0 2rem 5rem;
+                // line-height: 0;
+                // padding: 2rem 0;
+                padding-left: 5rem;
+            }
+        }
+
+        // @include desktop-breakpoint {
+        //     width: 20%;
+        //     // font-size: 4rem;
+        //     // padding-left: 5rem;
+        //     // line-height: 0;
+        //     // padding: 2rem 0;
+        // }
     }
 
     &__items {
@@ -33,20 +63,20 @@
 
         @include tablet-breakpoint {
             width: 40%;
-            
         }
 
         @include desktop-breakpoint {
             width: 40%;
+            @include flex(row, flex-start, center, null);
         }
 
         &-link {
             text-decoration: none;
-            color: $primary-color-white;
+            color: $primary-text-color;
             padding: 0.1rem 1rem 0.4rem 1rem;
             width: 100%;
             @include flex(row, center, center, null);
-            @include typeKit(.875rem, 1.375rem, 300);
+            @include type-kit(.875rem, 1.375rem, 300);
 
             @include tablet-breakpoint {
                 @include flex(row, center, center, null);
@@ -55,42 +85,29 @@
 
             @include desktop-breakpoint {
                 @include flex(row, center, center, null);
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
     
+            // &:link, (//::before //::after)
             &:active {
                 border-bottom: 4px solid white;
                 font-weight: 700;
-                color: $primary-color-silver;
+                color: $primary-text-color;
             }
     
             &:hover {
-                color: $primary-color-silver;
+                color: $primary-text-color;
                 font-weight: 500;
                 border-bottom: 4px solid white;
             }
         }
-    }
-
-    @include tablet-breakpoint {
-        @include flex(row, flex-start, center, null);
-        margin: 0;
-        padding-left: 1.5rem;
-        gap: 3rem;
-    }
-
-    @include desktop-breakpoint {
-        @include flex(row, flex-start, center, null);
-        margin: 0;
-        padding-left: 1.5rem;
-        gap: 3rem;
     }
 }
 
 // Main styling
 // Hero Section
 .hero {
-    background-color: $primary-color-black;
+    background-color: $primary-bg-color;
     background-image: url("../assets/images/hero-bio.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -99,74 +116,93 @@
     background-blend-mode: soft-light;
 
     @include tablet-breakpoint {
-        height: 6cqb;
+        height: 55vh;
     }
 
     @include desktop-breakpoint {
-        height: 60vh;
+        height: 80vh;
     }
 
     &__text {
-        color: $primary-color-white;
+        color: $primary-text-color;
         position: absolute;
         top: 40%;
-        left: 3%;
-        @include typeKit(1.5rem, null, 500);
+        left: 0;
+        padding: 0 1rem;
+        @include type-kit(1.5rem, null, 500);
 
         @include tablet-breakpoint {
-            font-size: 4rem;
+            font-size: 3rem;
+            padding: 0 2.25rem;
         }
     
         @include desktop-breakpoint {
             font-size: 4rem;
+            padding-left: 5rem;
+            font-weight: 700;
         }
     }
 }
 
 // About styling
 .about {
-    @include sectionSpacingMobile;
-    background-color: $primary-color-white;
+    @include section-spacing-mobile;
+    background-color: $primary-text-color;
 
     &__header {
-        @include headerMobile;
-        padding-bottom: 0.5rem;
+        @include header-mobile;
+        padding-bottom: 1rem;
 
         @include tablet-breakpoint {
-            @include headerTablet;
-            margin-top: 1rem;
+            @include header-tablet;
+            padding-left: 2.25rem;
         }
 
         @include desktop-breakpoint {
-            @include headerDesktop;
-            margin-top: 1rem;
+            @include header-desktop;
+        }
+    }
+
+    &__container {
+        @include tablet-breakpoint {
+            @include section-spacing-tablet-desktop;
+        }
+
+        @include desktop-breakpoint {
+            @include section-spacing-tablet-desktop
         }
     }
 
     &__image {
-        @include imageMobile;
+        @include image-mobile;
 
         @include tablet-breakpoint {
-            @include imageTablet;
+            @include section-tablet;
         }
 
         @include desktop-breakpoint {
-            @include imageDesktop;
+            width: 70%;
+            margin: 0 1rem 0 13rem;
+            height: 60vh;
         }
     }
 
     &__quote {
-        @include typeKit(0.9rem, 1.5rem, 500);
-        padding-top: 0.5rem;
+        @include type-kit(0.9rem, 1.5rem, 500);
+        padding-top: 1rem;
         word-spacing: 0.05rem;
 
         @include tablet-breakpoint {
-            @include imageTablet;
-            font-size: 1.3rem;
+            margin: 0rem 3.5rem;
+            font-size: 1.4rem;
+            line-height: 2rem;
+            max-width: 80%;
+            padding-top: 2.25rem;
         }
 
         @include desktop-breakpoint {
-            @include imageTablet;
+            width: 50%;
+            margin: 1.5rem 1rem 0 13rem;
             font-size: 1.3rem;
         }
     }
@@ -175,12 +211,15 @@
         @extend .about__quote;
         
         @include tablet-breakpoint {
-            @include imageTablet;
-            font-size: 1rem;
+            // max-width: 80%; //section-tablet
+            // margin: 0 5rem;
+            @include section-tablet;
+            font-size: 1.3rem;
         }
 
         @include desktop-breakpoint {
-            @include imageTablet;
+            width: 50%;
+            margin: 0.8rem 1rem 0 13rem;
             font-size: 1rem;
         }
     }
@@ -188,12 +227,25 @@
     &__article {
         @include flex(column, center, flex-start, null);
 
+        @include tablet-breakpoint {
+            // max-width: 80%; //section-tablet
+            // margin: 0 5rem;
+            @include section-tablet;
+        }
+    
+        @include desktop-breakpoint {
+            width: 70%;
+            margin: 2.5rem 1rem 0 13rem;
+            // height: 60vh;
+    }
+
         &-header {
             padding-top: 1rem;
-            @include typeKit(0.9rem, null, 310);
+            @include type-kit(0.9rem, null, 310);
 
             @include tablet-breakpoint {
-                font-size: 1.5rem;
+                font-size: 2rem;
+                padding-top: 2.25rem;
             }
 
             @include desktop-breakpoint {
@@ -203,7 +255,7 @@
 
         &-texts {
             @include flex(column, flex-start, center, wrap);
-            @include typeKit(.8125rem, 1.125rem, 300);
+            @include type-kit(.8125rem, 1.125rem, 300);
 
             @include tablet-breakpoint {
                 @include flex(row, space-between, center, nowrap);
@@ -211,6 +263,7 @@
 
             @include desktop-breakpoint {
                 @include flex(row, space-between, center, nowrap);
+                font-size: 0.95rem;
             }
         }
 
@@ -226,45 +279,59 @@
             @include desktop-breakpoint {
                 margin: 1rem 0 0 0;
                 line-height: 1.5rem;
-                width: 47%;
+                width: 48%;
             }
-        }
-
-        @include tablet-breakpoint {
-            @include imageTablet;
-        }
-
-        @include desktop-breakpoint {
-            @include imageTablet;
         }
     }
 }
 
 .gallery {
-    @include sectionSpacingMobile;
-    background-color: $secondary-color-alabaster;
+    @include section-spacing-mobile;
+    background-color: $alternative-light-bg;
+
+    @include tablet-breakpoint {
+        @include section-spacing-tablet-desktop;
+    }
+
+    @include desktop-breakpoint {
+        @include section-spacing-tablet-desktop;
+    }
 
     &__header {
-        @include headerMobile;
+        @include header-mobile;
 
         @include tablet-breakpoint {
-            @include headerTablet;
-            margin-top: 1rem;
+            @include header-tablet;
+        }
+
+        @include desktop-breakpoint {
+            @include header-desktop;
+            padding-bottom: 1rem; 
         }
     }
 
     &__photos {
-
         @include tablet-breakpoint {
             @include flex(row, space-evenly, center, wrap);
         }
 
+        @include desktop-breakpoint {
+            @include flex(row, space-evenly, center, wrap);
+            margin: 0 3rem 2rem;
+        }
+
         &-photo {
-            @include imageMobile;
+            @include image-mobile;
             margin: 0.4rem 0;
 
             @include tablet-breakpoint {
                 width: 30%;
+                margin-bottom: 1rem;
+            }
+
+            @include desktop-breakpoint {
+                width: 30%;
+                margin-top: 1.5rem;
             }
         }
     }
@@ -272,33 +339,47 @@
 
 // Footer stylings
 .footer {
-    background-color: $primary-color-black;
-    color: $primary-color-white;
+    background-color: $primary-bg-color;
+    color: $primary-text-color;
     position: relative;
 
     @include tablet-breakpoint {
-        @include headerTablet;
+        @include header-tablet;
+        position: relative;
+    }
+
+    @include desktop-breakpoint {
+        @include header-desktop;
         position: relative;
     }
 
     &__bandsite {
-        @include typeKit(1.8rem, null, 300);
+        @include type-kit(1.8rem, null, 300);
         position: absolute;
         bottom: 10%;
         left: 2%;
 
+        // bandite = flexbox = order property = nth-of-type()
+        // check out DM for this also
+
         @include tablet-breakpoint {
             position: absolute;
             top: 13%;
-            right: 2.5%;
-            left: auto;
+            left: 75%;
+            bottom: auto;
+        }
+
+        @include desktop-breakpoint {
+            position: absolute;
+            top: 13%;
+            left: 84%;
             bottom: auto;
         }
     }
 
     &__section {
         // border: 2px dashed red;
-        @include sectionSpacingMobile;
+        @include section-spacing-mobile;
         @include flex(column, flex-start, flex-start, null);
     }
 
@@ -311,17 +392,29 @@
             margin-top: 3%;
             @include flex(row, flex-start, center, null);
             width: 100%;
+            gap: 8.5rem;
+        }
+
+        @include desktop-breakpoint {
+            margin-top: 3%;
+            @include flex(row, flex-start, center, null);
+            width: 100%;
+            gap: 7rem;
         }
 
         &-text {
-            @include typeKit(1.5rem, null, 500);
+            @include type-kit(1.5rem, null, 500);
 
             @include tablet-breakpoint {
-                font-size: 2rem;
+                font-size: 2.1rem;
+            }
+
+            @include desktop-breakpoint {
+                font-size: 2.3rem;
             }
         }
 
-        &-image {
+        &-images {
             @include flex(row, null, null, null);
             gap: 1.5rem;
 
@@ -330,13 +423,26 @@
                 gap: 2.5rem;
                 margin-left: 2rem;
             }
+
+            @include desktop-breakpoint {
+                @include flex(row, flex-end, center, null);
+                gap: 2.5rem;
+                margin-left: 2rem;
+                // width: 25%;
+            }
         }
+
+        // &-image {
+        //     @include desktop-breakpoint {
+        //         // width: 10%;
+        //     }
+        // }
     }
 
     &__info {
         @include flex(column, null, null, null);
         margin: 1rem 0 4.5rem 0;
-        @include typeKit(null, 2.5rem, null);
+        @include type-kit(null, 2.5rem, null);
 
         @include tablet-breakpoint {
             @include flex(row, space-evenly, center, null);
@@ -345,46 +451,113 @@
             margin-bottom: 2rem;
         }
 
-        &-bees {
+        @include desktop-breakpoint {
+            @include flex(row, space-evenly, center, null);
+            line-height: 5rem;
+            letter-spacing: 0.01rem;
+            margin-bottom: 2rem;
+        }
+
+        &-1 {
             &-title {
-                @include typeKit(0.9rem, null, 700);
+                @include type-kit(0.9rem, null, 700);
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.9rem, null, 500);
+                }
             }
 
             &-address {
-                @include typeKit(0.8rem, 1rem, 300);
+                @include type-kit(0.8rem, 1rem, 300);
                 width: 60%;
+
+                @include tablet-breakpoint {
+                    @include type-kit(0.9rem, 1.4rem, 400);
+                }
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.9rem, 1.4rem, 400);
+                }
             }
 
             &-email {
-                @include typeKit(0.7rem, null, 300);
+                @include type-kit(0.7rem, null, 300);
+
+                @include tablet-breakpoint {
+                    @include type-kit(0.8rem, null, 300);
+                }
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.8rem, null, 300);
+                }
             }
         }
 
-        &-limitless {
+        &-2 {
             &-title {
-                @extend .footer__info-bees-title;
+                @extend .footer__info-1-title;
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.9rem, null, 500);
+                }
             }
 
             &-address {
-                @extend .footer__info-bees-address;
+                @extend .footer__info-1-address;
+
+                @include tablet-breakpoint {
+                    @include type-kit(0.9rem, 1.4rem, 400);
+                }
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.9rem, 1.4rem, 400);
+                }
             }
 
             &-email {
-                @extend .footer__info-bees-email;
+                @extend .footer__info-1-email;
+
+                @include tablet-breakpoint {
+                    @include type-kit(0.8rem, null, 300);
+                }
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.8rem, null, 300);
+                }
             }
         }
 
-        &-arch {
+        &-3 {
             &-title {
-                @extend .footer__info-bees-title;
+                @extend .footer__info-1-title;
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.9rem, null, 500);
+                }
             }
 
             &-address {
-                @extend .footer__info-bees-address;
+                @extend .footer__info-1-address;
+
+                @include tablet-breakpoint {
+                        @include type-kit(0.9rem, 1.4rem, 400);
+                    }
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.9rem, 1.4rem, 400);
+                }
             }
 
             &-email {
-                @extend .footer__info-bees-email;
+                @extend .footer__info-1-email;
+
+                @include tablet-breakpoint {
+                    @include type-kit(0.8rem, null, 300);
+                }
+
+                @include desktop-breakpoint {
+                    @include type-kit(0.8rem, null, 300);
+                }
             }
         }
     }
@@ -394,7 +567,11 @@
         margin-bottom: 5%;
 
         @include tablet-breakpoint {
-            font-size: 0.9rem;
+            @include type-kit(0.9rem, null, 300);
+        }
+
+        @include desktop-breakpoint {
+            @include type-kit(0.9rem, null, 400);
         }
     }
 }

@@ -1,4 +1,4 @@
-@mixin typeKit($fontSize, $lineHeight, $fontWeight) {
+@mixin type-kit($fontSize, $lineHeight, $fontWeight) {
     font-size: $fontSize;
     line-height: $lineHeight;
     font-weight: $fontWeight;
@@ -12,47 +12,41 @@
     flex-wrap: $wrap;
 }
 
-@mixin sectionSpacingMobile {
-    margin: 0 0.8rem;
-    padding: 0.5rem 0;
+@mixin section-spacing-mobile {
+    margin: 0;
+    padding: 0.5rem 1rem;
 }
 
-// @mixin sectionSpacingTablet {
-//     margin: 0 1.2rem;
-//     padding: 1rem 0;
-// }
+@mixin section-spacing-tablet-desktop {
+    margin: 0;
+    padding: 0.5rem 2.25rem;
+}
 
-@mixin imageMobile {
+@mixin image-mobile {
     max-width: 100%;
     height: auto;
 }
 
-@mixin imageTablet {
+@mixin section-tablet {
     max-width: 80%;
-    margin: 0 5rem;
+    margin: 0 3.5rem;
 }
 
-@mixin imageDesktop {
-    width: 90%;
-    // margin: 0 1rem 0 9rem;
-    margin: 0 auto;
-    height: 70vh;
-}
-
-@mixin headerMobile {
-    @include typeKit(1.5rem, null, 550);
+@mixin header-mobile {
+    @include type-kit(1.5rem, null, 550);
     padding: 1rem 0;
     letter-spacing: 0.05rem;
 }
 
-@mixin headerTablet {
-    @include typeKit(2.3rem, null, 550);
-    padding: 1rem 0 1rem 1.2rem;
+@mixin header-tablet {
+    @include type-kit(2.5rem, null, 550);
+    padding: 1.5rem 0 1rem 0rem;
 }
 
-@mixin headerDesktop {
-    @include typeKit(2.6rem, null, 550);
-    padding: 1rem 0rem 1rem 6rem;
+@mixin header-desktop {
+    @include type-kit(2.3rem, null, 550);
+    padding: 1rem 0rem 2rem 5rem;
+    margin-top: 1rem;
 }
 
 // DESKTOP screen sizes are defined at 1280px, but are applied to screen sizes 1280px and greater.
