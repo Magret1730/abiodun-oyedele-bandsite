@@ -13,24 +13,29 @@
         @include flex(row, flex-start, center, null);
         margin: 0;
         padding: 0 2.25rem;
-        gap: 3rem;
+        // gap: 3rem;
     }
 
     @include desktop-breakpoint {
-        @include flex(row, flex-start, center, null);
+        @include flex(row, null, center, null);
+        // width: 40%;
         margin: 0;
-        padding: 2.5rem 0 3rem 1.5rem;
-        gap: 3rem;
+        // gap: 3rem;
+        padding: 0 2.25rem;
+        // height: 22vh;
     }
 
     &__logo {
         @include tablet-breakpoint {
-            width: 40%;
+            // width: 40%;
+            width: 16%;
             font-size: 2.2rem;
         }
 
         @include desktop-breakpoint {
-
+            width: 16%;
+            font-size: 2.4rem;
+            // height: 10vh;
         }
 
         &-bandsite {
@@ -41,20 +46,10 @@
             @include desktop-breakpoint {
                 width: 20%;
                 font-size: 2rem;
-                // padding: 3rem 0 2rem 5rem;
-                // line-height: 0;
-                // padding: 2rem 0;
-                padding-left: 5rem;
+                padding-left: 4rem;
+                // height: 10vh;
             }
         }
-
-        // @include desktop-breakpoint {
-        //     width: 20%;
-        //     // font-size: 4rem;
-        //     // padding-left: 5rem;
-        //     // line-height: 0;
-        //     // padding: 2rem 0;
-        // }
     }
 
     &__items {
@@ -62,35 +57,47 @@
         width: 100%;
 
         @include tablet-breakpoint {
+            // width: 40%;
             width: 40%;
+            @include flex(row, flex-end, center, null);
+            // border: 2px solid blue;
         }
 
         @include desktop-breakpoint {
-            width: 40%;
-            @include flex(row, flex-start, center, null);
+            width: 20%;
+            @include flex(row, flex-end, center, null);
+            // border: 2px solid blue;
         }
 
         &-link {
             text-decoration: none;
-            color: $primary-text-color;
+            color: $secondary-inactive-color;
             padding: 0.1rem 1rem 0.4rem 1rem;
             width: 100%;
             @include flex(row, center, center, null);
             @include type-kit(.875rem, 1.375rem, 300);
+            border-bottom: 2px solid transparent;
+            position: relative;
 
             @include tablet-breakpoint {
                 @include flex(row, center, center, null);
                 font-size: 1rem;
+
+                padding: 2rem 0;
+                width: 40%;
+                // border: 2px solid red;
             }
 
             @include desktop-breakpoint {
                 @include flex(row, center, center, null);
                 font-size: 1.2rem;
+                padding: 2rem 0;
+                width: 40%;
+                // border: 2px solid red;
             }
     
             // &:link, (//::before //::after)
             &:active {
-                border-bottom: 4px solid white;
                 font-weight: 700;
                 color: $primary-text-color;
             }
@@ -98,13 +105,51 @@
             &:hover {
                 color: $primary-text-color;
                 font-weight: 500;
-                border-bottom: 4px solid white;
             }
+
+            &:hover::after,
+            &:active::after {
+                content: "";
+                position: absolute;
+                border-bottom: 2px solid $primary-text-color;
+                bottom: -0.1rem;
+                width: 40%;
+                height: 0.1vh;
+                // background-color: $primary-text-color;
+                // transform: translateX(-50%)
+            }
+
+            // &1 {
+            //     &:hover::after,
+            //     &:hover::before {
+            //         width: 28%;
+            //     }
+
+            //     @include tablet-breakpoint {
+            //         &:hover::after,
+            //         &:hover::before {
+            //             width: 52%;
+            //         }
+            //     }
+            // }
+
+            // &2 {
+            //     &:hover::after,
+            //     &:hover::before {
+            //         width: 20%;
+            //     }
+
+            //     @include tablet-breakpoint {
+            //         &:hover::after,
+            //         &:hover::before {
+            //             width: 35%;
+            //         }
+            //     }
+            // }
         }
     }
 }
 
-// Main styling
 // Hero Section
 .hero {
     background-color: $primary-bg-color;
@@ -114,6 +159,7 @@
     padding: 6rem;
     position: relative;
     background-blend-mode: soft-light;
+    height: 30vh;
 
     @include tablet-breakpoint {
         height: 55vh;
@@ -129,17 +175,20 @@
         top: 40%;
         left: 0;
         padding: 0 1rem;
-        @include type-kit(1.5rem, null, 500);
+        @include type-kit(1.9rem, null, 500);
 
         @include tablet-breakpoint {
-            font-size: 3rem;
+            font-size: 4.2rem;
             padding: 0 2.25rem;
+            // padding: 0 ;
         }
     
         @include desktop-breakpoint {
             font-size: 4rem;
-            padding-left: 5rem;
+            padding: 0 5rem;
             font-weight: 700;
+            // padding: 0 2.25rem;
+            padding-left: 6.25rem;
         }
     }
 }
@@ -149,17 +198,22 @@
     @include section-spacing-mobile;
     background-color: $primary-text-color;
 
+    @include desktop-breakpoint {
+        padding: 0 2.25rem;
+    }
+
     &__header {
         @include header-mobile;
         padding-bottom: 1rem;
 
         @include tablet-breakpoint {
             @include header-tablet;
-            padding-left: 2.25rem;
+            padding-left: 1.25rem;
         }
 
         @include desktop-breakpoint {
             @include header-desktop;
+            padding-left: 4rem;
         }
     }
 
@@ -181,8 +235,8 @@
         }
 
         @include desktop-breakpoint {
-            width: 70%;
-            margin: 0 1rem 0 13rem;
+            width: 80%;
+            margin: 0 1rem 0 8rem;
             height: 60vh;
         }
     }
@@ -194,15 +248,15 @@
 
         @include tablet-breakpoint {
             margin: 0rem 3.5rem;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             line-height: 2rem;
             max-width: 80%;
             padding-top: 2.25rem;
         }
 
         @include desktop-breakpoint {
-            width: 50%;
-            margin: 1.5rem 1rem 0 13rem;
+            width: 70%;
+            margin: 1.5rem 1rem 0 8rem;
             font-size: 1.3rem;
         }
     }
@@ -211,15 +265,14 @@
         @extend .about__quote;
         
         @include tablet-breakpoint {
-            // max-width: 80%; //section-tablet
-            // margin: 0 5rem;
             @include section-tablet;
             font-size: 1.3rem;
+            padding-top: 0;
         }
 
         @include desktop-breakpoint {
-            width: 50%;
-            margin: 0.8rem 1rem 0 13rem;
+            width: 70%;
+            margin: 0rem 1rem 0 8rem;
             font-size: 1rem;
         }
     }
@@ -234,22 +287,24 @@
         }
     
         @include desktop-breakpoint {
-            width: 70%;
-            margin: 2.5rem 1rem 0 13rem;
+            width: 80%;
+            margin: 2.5rem 1rem 0 8rem;
             // height: 60vh;
-    }
+        }
 
         &-header {
             padding-top: 1rem;
             @include type-kit(0.9rem, null, 310);
 
-            @include tablet-breakpoint {
-                font-size: 2rem;
-                padding-top: 2.25rem;
-            }
+            // @include tablet-breakpoint {
+            //     font-size: 2rem;
+            //     padding-top: 2.25rem;
+            // }
 
             @include desktop-breakpoint {
                 font-size: 1.5rem;
+                padding-top: 0;
+                padding-bottom: 1rem;
             }
         }
 
@@ -302,22 +357,26 @@
 
         @include tablet-breakpoint {
             @include header-tablet;
+            // padding-left: 2.25rem;
         }
 
         @include desktop-breakpoint {
             @include header-desktop;
             padding-bottom: 1rem; 
+            padding-left: 4rem;
         }
     }
 
     &__photos {
         @include tablet-breakpoint {
-            @include flex(row, space-evenly, center, wrap);
+            @include flex(row, space-between, center, wrap);
+            padding: 0;
         }
 
         @include desktop-breakpoint {
             @include flex(row, space-evenly, center, wrap);
-            margin: 0 3rem 2rem;
+            // margin: 0 3rem 2rem;
+            padding: 0 2.2rem;
         }
 
         &-photo {
@@ -353,46 +412,56 @@
         position: relative;
     }
 
-    &__bandsite {
-        @include type-kit(1.8rem, null, 300);
-        position: absolute;
-        bottom: 10%;
-        left: 2%;
-
-        // bandite = flexbox = order property = nth-of-type()
-        // check out DM for this also
+    &__section {
+        @include section-spacing-mobile;
+        @include flex(column, flex-start, flex-start, null);
+        padding: 0 1rem;
 
         @include tablet-breakpoint {
+            padding: 0 2.25rem;
+        }
+
+        @include desktop-breakpoint {
+            padding: 0 0.5rem;
+        }
+    }
+
+    &__bandsite {
+        @include type-kit(1.8rem, null, 300);
+        order: 3;
+        margin-bottom: 0.7rem;
+
+        @include tablet-breakpoint {
+            // padding: 0 2.25rem;
+
             position: absolute;
             top: 13%;
-            left: 75%;
+            left: 80%;
             bottom: auto;
         }
 
         @include desktop-breakpoint {
+            // padding: 0 2.25rem;
+
             position: absolute;
             top: 13%;
-            left: 84%;
+            left: 82%;
             bottom: auto;
         }
-    }
-
-    &__section {
-        // border: 2px dashed red;
-        @include section-spacing-mobile;
-        @include flex(column, flex-start, flex-start, null);
     }
 
     &__icons {
         @include flex(column, null, null, null);
         gap: 1rem;
         margin-top: 5%;
+        order: 1;
 
         @include tablet-breakpoint {
             margin-top: 3%;
             @include flex(row, flex-start, center, null);
             width: 100%;
-            gap: 8.5rem;
+            gap: 6.2rem;
+            // padding: 0 3.5rem;
         }
 
         @include desktop-breakpoint {
@@ -431,24 +500,20 @@
                 // width: 25%;
             }
         }
-
-        // &-image {
-        //     @include desktop-breakpoint {
-        //         // width: 10%;
-        //     }
-        // }
     }
 
     &__info {
         @include flex(column, null, null, null);
-        margin: 1rem 0 4.5rem 0;
+        margin: 1rem 0 1.5rem 0;
         @include type-kit(null, 2.5rem, null);
+        order: 2;
 
         @include tablet-breakpoint {
             @include flex(row, space-evenly, center, null);
             line-height: 5rem;
             letter-spacing: 0.01rem;
             margin-bottom: 2rem;
+            // padding: 0 3.6rem;
         }
 
         @include desktop-breakpoint {
@@ -565,9 +630,11 @@
     &__copyright {
         font-size: 0.6rem;
         margin-bottom: 5%;
+        order: 4;
 
         @include tablet-breakpoint {
             @include type-kit(0.9rem, null, 300);
+            // padding: 0 3.6rem;
         }
 
         @include desktop-breakpoint {

@@ -43,9 +43,11 @@
     padding: 1.5rem 0 1rem 0rem;
 }
 
+// padding: 0 2.25rem;
+
 @mixin header-desktop {
     @include type-kit(2.3rem, null, 550);
-    padding: 1rem 0rem 2rem 5rem;
+    padding: 1rem 6rem 2rem 6rem;
     margin-top: 1rem;
 }
 
