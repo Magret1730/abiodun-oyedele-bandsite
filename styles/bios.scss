@@ -13,21 +13,16 @@
         @include flex(row, flex-start, center, null);
         margin: 0;
         padding: 0 2.25rem;
-        // gap: 3rem;
     }
 
     @include desktop-breakpoint {
         @include flex(row, null, center, null);
-        // width: 40%;
         margin: 0;
-        // gap: 3rem;
         padding: 0 2.25rem;
-        // height: 22vh;
     }
 
     &__logo {
         @include tablet-breakpoint {
-            // width: 40%;
             width: 16%;
             font-size: 2.2rem;
         }
@@ -35,7 +30,6 @@
         @include desktop-breakpoint {
             width: 16%;
             font-size: 2.4rem;
-            // height: 10vh;
         }
 
         &-bandsite {
@@ -47,56 +41,51 @@
                 width: 20%;
                 font-size: 2rem;
                 padding-left: 4rem;
-                // height: 10vh;
             }
         }
     }
 
     &__items {
-        @include flex(row, center, center, null);
-        width: 100%;
+        @include flex(row, space-between, center, null);
+        width: 50%;
 
         @include tablet-breakpoint {
-            // width: 40%;
-            width: 40%;
-            @include flex(row, flex-end, center, null);
-            // border: 2px solid blue;
+            width: 22%;
+            @include flex(row, space-between, center, null);
+            margin-left: 2rem;
+            padding: 1.5rem 0;
         }
 
         @include desktop-breakpoint {
-            width: 20%;
-            @include flex(row, flex-end, center, null);
-            // border: 2px solid blue;
+            width: 15%;
+            @include flex(row, space-between, center, null);
+            margin-left: 4rem;
+            padding: 2rem 0;
         }
 
         &-link {
+            position: relative;
             text-decoration: none;
             color: $secondary-inactive-color;
-            padding: 0.1rem 1rem 0.4rem 1rem;
-            width: 100%;
-            @include flex(row, center, center, null);
+            padding-bottom: 0.4rem;
             @include type-kit(.875rem, 1.375rem, 300);
             border-bottom: 2px solid transparent;
-            position: relative;
+            width: fit-content;
 
             @include tablet-breakpoint {
-                @include flex(row, center, center, null);
+                @include flex(row, space-between, center, null);
                 font-size: 1rem;
-
-                padding: 2rem 0;
-                width: 40%;
-                // border: 2px solid red;
+                width: fit-content;
+                margin-top: 0.8rem;
             }
 
             @include desktop-breakpoint {
-                @include flex(row, center, center, null);
+                @include flex(row, space-between, center, null);
                 font-size: 1.2rem;
-                padding: 2rem 0;
-                width: 40%;
-                // border: 2px solid red;
+                margin-top: 1rem;
+                width: fit-content;
             }
     
-            // &:link, (//::before //::after)
             &:active {
                 font-weight: 700;
                 color: $primary-text-color;
@@ -111,41 +100,20 @@
             &:active::after {
                 content: "";
                 position: absolute;
-                border-bottom: 2px solid $primary-text-color;
                 bottom: -0.1rem;
-                width: 40%;
-                height: 0.1vh;
-                // background-color: $primary-text-color;
-                // transform: translateX(-50%)
+                left: 0;
+                right: 0;
+                height: 0.125rem;
+                border-bottom: 2px solid $primary-text-color;
+
+                @include tablet-breakpoint {
+                    bottom: -1.6rem;
+                }
+
+                @include desktop-breakpoint {
+                    bottom: -2.1rem;
+                }
             }
-
-            // &1 {
-            //     &:hover::after,
-            //     &:hover::before {
-            //         width: 28%;
-            //     }
-
-            //     @include tablet-breakpoint {
-            //         &:hover::after,
-            //         &:hover::before {
-            //             width: 52%;
-            //         }
-            //     }
-            // }
-
-            // &2 {
-            //     &:hover::after,
-            //     &:hover::before {
-            //         width: 20%;
-            //     }
-
-            //     @include tablet-breakpoint {
-            //         &:hover::after,
-            //         &:hover::before {
-            //             width: 35%;
-            //         }
-            //     }
-            // }
         }
     }
 }
@@ -180,14 +148,12 @@
         @include tablet-breakpoint {
             font-size: 4.2rem;
             padding: 0 2.25rem;
-            // padding: 0 ;
         }
     
         @include desktop-breakpoint {
             font-size: 4rem;
             padding: 0 5rem;
             font-weight: 700;
-            // padding: 0 2.25rem;
             padding-left: 6.25rem;
         }
     }
@@ -281,25 +247,22 @@
         @include flex(column, center, flex-start, null);
 
         @include tablet-breakpoint {
-            // max-width: 80%; //section-tablet
-            // margin: 0 5rem;
             @include section-tablet;
         }
     
         @include desktop-breakpoint {
             width: 80%;
             margin: 2.5rem 1rem 0 8rem;
-            // height: 60vh;
         }
 
         &-header {
             padding-top: 1rem;
             @include type-kit(0.9rem, null, 310);
 
-            // @include tablet-breakpoint {
-            //     font-size: 2rem;
-            //     padding-top: 2.25rem;
-            // }
+            @include tablet-breakpoint {
+                font-size: 2rem;
+                padding-top: 2.25rem;
+            }
 
             @include desktop-breakpoint {
                 font-size: 1.5rem;
@@ -314,11 +277,12 @@
 
             @include tablet-breakpoint {
                 @include flex(row, space-between, center, nowrap);
+                font-size: 1rem;
             }
 
             @include desktop-breakpoint {
                 @include flex(row, space-between, center, nowrap);
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
         }
 
@@ -357,7 +321,6 @@
 
         @include tablet-breakpoint {
             @include header-tablet;
-            // padding-left: 2.25rem;
         }
 
         @include desktop-breakpoint {
@@ -375,7 +338,6 @@
 
         @include desktop-breakpoint {
             @include flex(row, space-evenly, center, wrap);
-            // margin: 0 3rem 2rem;
             padding: 0 2.2rem;
         }
 
@@ -395,6 +357,7 @@
         }
     }
 }
+
 
 // Footer stylings
 .footer {
@@ -432,8 +395,6 @@
         margin-bottom: 0.7rem;
 
         @include tablet-breakpoint {
-            // padding: 0 2.25rem;
-
             position: absolute;
             top: 13%;
             left: 80%;
@@ -441,8 +402,6 @@
         }
 
         @include desktop-breakpoint {
-            // padding: 0 2.25rem;
-
             position: absolute;
             top: 13%;
             left: 82%;
@@ -461,7 +420,6 @@
             @include flex(row, flex-start, center, null);
             width: 100%;
             gap: 6.2rem;
-            // padding: 0 3.5rem;
         }
 
         @include desktop-breakpoint {
@@ -497,7 +455,6 @@
                 @include flex(row, flex-end, center, null);
                 gap: 2.5rem;
                 margin-left: 2rem;
-                // width: 25%;
             }
         }
     }
@@ -513,7 +470,6 @@
             line-height: 5rem;
             letter-spacing: 0.01rem;
             margin-bottom: 2rem;
-            // padding: 0 3.6rem;
         }
 
         @include desktop-breakpoint {
@@ -634,7 +590,6 @@
 
         @include tablet-breakpoint {
             @include type-kit(0.9rem, null, 300);
-            // padding: 0 3.6rem;
         }
 
         @include desktop-breakpoint {
