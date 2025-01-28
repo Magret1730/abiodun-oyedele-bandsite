@@ -85,12 +85,12 @@
                 margin-top: 1rem;
                 width: fit-content;
             }
-    
+
             &:active {
                 font-weight: 700;
                 color: $primary-text-color;
             }
-    
+
             &:hover {
                 color: $primary-text-color;
                 font-weight: 500;
@@ -120,14 +120,13 @@
 
 // Hero Section
 .hero {
+    @include flex(column, center, null, null);
     background-color: $primary-bg-color;
-    background-image: url("../assets/images/hero-bio.jpg");
+    background-image: url("../assets/images/hero-shows.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    padding: 6rem;
-    position: relative;
+    padding: 2rem 1rem;
     background-blend-mode: soft-light;
-    height: 30vh;
 
     @include tablet-breakpoint {
         height: 55vh;
@@ -137,19 +136,23 @@
         height: 80vh;
     }
 
+    &__header {
+        color: $primary-text-color;
+        @include type-kit(0.9rem, null, 500);
+        padding-bottom: 1rem;
+    }
+
     &__text {
         color: $primary-text-color;
-        position: absolute;
-        top: 40%;
-        left: 0;
-        padding: 0 1rem;
-        @include type-kit(1.9rem, null, 500);
+        @include type-kit(1.5rem, null, 500);
+        padding-bottom: 1rem;
+        width: 75%;
 
         @include tablet-breakpoint {
             font-size: 4.2rem;
             padding: 0 2.25rem;
         }
-    
+
         @include desktop-breakpoint {
             font-size: 4rem;
             padding: 0 5rem;
@@ -157,204 +160,81 @@
             padding-left: 6.25rem;
         }
     }
-}
 
-// About styling
-.about {
-    @include section-spacing-mobile;
-    background-color: $primary-text-color;
-
-    @include desktop-breakpoint {
-        padding: 0 2.25rem;
+    &__iframe {
+        padding: 2rem auto;
     }
 
+    // &__overlay {
+    //     width: 100%;
+    //     height: 40vh;
+    //     background-color: $primary-bg-color;
+        
+    // }
+}
+
+// Shows Styling
+.shows {
     &__header {
-        @include header-mobile;
+        padding: 1.5rem 1rem 0.5rem 1rem;
+    }
+
+    &__details {
+        padding-bottom: 1rem;
+    }
+
+    &__show {
+        padding: 1rem 1rem 1rem 1rem;
+        border-bottom: 1px solid $secondary-inactive-color;
+    }
+
+    &__dates {
         padding-bottom: 1rem;
 
-        @include tablet-breakpoint {
-            @include header-tablet;
-            padding-left: 1.25rem;
+        &-header {
+            color: $secondary-text-color;
+            font-size: .6875rem;
+            padding-bottom: 0.5rem;
         }
 
-        @include desktop-breakpoint {
-            @include header-desktop;
-            padding-left: 4rem;
-        }
-    }
-
-    &__container {
-        @include tablet-breakpoint {
-            @include section-spacing-tablet-desktop;
-        }
-
-        @include desktop-breakpoint {
-            @include section-spacing-tablet-desktop
+        &-date {
+            font-size: .8125rem;
+            font-weight: 700;
         }
     }
 
-    &__image {
-        @include image-mobile;
-
-        @include tablet-breakpoint {
-            @include section-tablet;
-        }
-
-        @include desktop-breakpoint {
-            width: 80%;
-            margin: 0 1rem 0 8rem;
-            height: 60vh;
-        }
-    }
-
-    &__quote {
-        @include type-kit(0.9rem, 1.5rem, 500);
-        padding-top: 1rem;
-        word-spacing: 0.05rem;
-
-        @include tablet-breakpoint {
-            margin: 0rem 3.5rem;
-            font-size: 1.3rem;
-            line-height: 2rem;
-            max-width: 80%;
-            padding-top: 2.25rem;
-        }
-
-        @include desktop-breakpoint {
-            width: 70%;
-            margin: 1.5rem 1rem 0 8rem;
-            font-size: 1.3rem;
-        }
-    }
-
-    &__quotename {
-        @extend .about__quote;
-        
-        @include tablet-breakpoint {
-            @include section-tablet;
-            font-size: 1.3rem;
-            padding-top: 0;
-        }
-
-        @include desktop-breakpoint {
-            width: 70%;
-            margin: 0rem 1rem 0 8rem;
-            font-size: 1rem;
-        }
-    }
-
-    &__article {
-        @include flex(column, center, flex-start, null);
-
-        @include tablet-breakpoint {
-            @include section-tablet;
-        }
-    
-        @include desktop-breakpoint {
-            width: 80%;
-            margin: 2.5rem 1rem 0 8rem;
-        }
+    &__venue {
+        @extend .shows__dates;
 
         &-header {
-            padding-top: 1rem;
-            @include type-kit(0.9rem, null, 310);
-
-            @include tablet-breakpoint {
-                font-size: 2rem;
-                padding-top: 2.25rem;
-            }
-
-            @include desktop-breakpoint {
-                font-size: 1.5rem;
-                padding-top: 0;
-                padding-bottom: 1rem;
-            }
+            @extend .shows__dates-header;
         }
 
-        &-texts {
-            @include flex(column, flex-start, center, wrap);
-            @include type-kit(.8125rem, 1.125rem, 300);
-
-            @include tablet-breakpoint {
-                @include flex(row, space-between, center, nowrap);
-                font-size: 1rem;
-            }
-
-            @include desktop-breakpoint {
-                @include flex(row, space-between, center, nowrap);
-                font-size: 1rem;
-            }
-        }
-
-        &-text {
-            margin: 1rem 0;
-
-            @include tablet-breakpoint {
-                margin: 1rem 0 0 0;
-                line-height: 1.5rem;
-                width: 47%;
-            }
-
-            @include desktop-breakpoint {
-                margin: 1rem 0 0 0;
-                line-height: 1.5rem;
-                width: 48%;
-            }
-        }
-    }
-}
-
-.gallery {
-    @include section-spacing-mobile;
-    background-color: $alternative-light-bg;
-
-    @include tablet-breakpoint {
-        @include section-spacing-tablet-desktop;
-    }
-
-    @include desktop-breakpoint {
-        @include section-spacing-tablet-desktop;
-    }
-
-    &__header {
-        @include header-mobile;
-
-        @include tablet-breakpoint {
-            @include header-tablet;
-        }
-
-        @include desktop-breakpoint {
-            @include header-desktop;
-            padding-bottom: 1rem; 
-            padding-left: 4rem;
+        &-venue {
+            font-size: .8125rem;
+            font-weight: 400;
         }
     }
 
-    &__photos {
-        @include tablet-breakpoint {
-            @include flex(row, space-between, center, wrap);
-            padding: 0;
+    &__location {
+        &-header {
+            @extend .shows__dates-header;
         }
 
-        @include desktop-breakpoint {
-            @include flex(row, space-evenly, center, wrap);
-            padding: 0 2.2rem;
+        &-location {
+            @extend .shows__venue-venue;
         }
+    }
 
-        &-photo {
-            @include image-mobile;
-            margin: 0.4rem 0;
-
-            @include tablet-breakpoint {
-                width: 30%;
-                margin-bottom: 1rem;
-            }
-
-            @include desktop-breakpoint {
-                width: 30%;
-                margin-top: 1.5rem;
-            }
-        }
+    &__button {
+        background-color: $primary-bg-color;
+        height: 5.5vh;
+        width: 100%;
+        border-radius: .25rem;
+        color: $primary-text-color;
+        @include flex(row, center, center, null);
+        margin-top: 1rem;
+        font-weight: 500;
     }
 }
 
@@ -560,8 +440,8 @@
                 @extend .footer__info-1-address;
 
                 @include tablet-breakpoint {
-                        @include type-kit(0.9rem, 1.4rem, 400);
-                    }
+                    @include type-kit(0.9rem, 1.4rem, 400);
+                }
 
                 @include desktop-breakpoint {
                     @include type-kit(0.9rem, 1.4rem, 400);
