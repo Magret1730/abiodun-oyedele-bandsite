@@ -34,6 +34,28 @@ const shows = [
 
 const showDetails = document.querySelector(".shows__details");
 
+const showHeaders = document.createElement("section");
+showHeaders.classList.add("shows__headers")
+const dateHead = document.createElement("div");
+dateHead.classList.add("shows__headers-div");
+dateHead.textContent = "DATE";
+const venueHead = document.createElement("div");
+venueHead.classList.add("shows__headers-div");
+venueHead.textContent = "VENUE";
+const locationHead = document.createElement("div");
+locationHead.classList.add("shows__headers-div");
+locationHead.textContent = "LOCATION";
+// const emptyHead = document.createElement("div");
+// emptyHead.classList.add("shows__headers-div");
+// emptyHead.textContent = "EMPTY";
+showHeaders.appendChild(dateHead);
+showHeaders.appendChild(venueHead);
+showHeaders.appendChild(locationHead);
+// showHeaders.appendChild(emptyHead);
+
+showDetails.appendChild(showHeaders);
+
+
 for (let i = 0; i < shows.length; i++) {
     const showContainer = document.createElement("div");
     showContainer.classList.add("shows__show");
@@ -92,6 +114,7 @@ for (let i = 0; i < shows.length; i++) {
     showContainer.appendChild(dateButton);
 
     // Attaching them all to the shows__details
+    // showDetails.appendChild(showHeaders);
     showDetails.appendChild(showContainer);
 }
 

@@ -129,17 +129,35 @@
     background-blend-mode: soft-light;
 
     @include tablet-breakpoint {
-        height: 55vh;
+        padding: 2rem 2rem;
     }
 
     @include desktop-breakpoint {
-        height: 80vh;
+        @include flex(column, null, null, null);
+        padding: 0 2.25rem;
+        height: 90vh;
     }
 
     &__header {
         color: $primary-text-color;
         @include type-kit(0.9rem, null, 500);
         padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+            font-size: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        @include desktop-breakpoint {
+            padding-left: 4rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    &__container {
+        @include desktop-breakpoint {
+            @include flex(row, space-between, center, null);
+        }
     }
 
     &__text {
@@ -149,20 +167,41 @@
         width: 75%;
 
         @include tablet-breakpoint {
-            font-size: 4.2rem;
-            padding: 0 2.25rem;
+            font-size: 3rem;
+            padding: 0;
+            // width: 73%;
+            font-weight: 700;
         }
 
         @include desktop-breakpoint {
-            font-size: 4rem;
-            padding: 0 5rem;
+            font-size: 4.5rem;
+            padding-left: 4rem;
             font-weight: 700;
-            padding-left: 6.25rem;
+            width: 50%;
+            // padding: 0 0 0 4rem;
         }
+
+        // &-pad {
+        //     padding-bottom: 1rem;
+        // }
     }
 
     &__iframe {
         padding: 2rem auto;
+        height: 15vh;
+
+        @include tablet-breakpoint {
+            width: 60%;
+            padding-top: 2rem;
+            height: 25vh;
+        }
+
+        @include desktop-breakpoint {
+            padding-right: 3rem;
+            width: 40%;
+            height: 21vh;
+            border-radius: .3125rem;
+        }
     }
 
     // &__overlay {
@@ -175,36 +214,148 @@
 
 // Shows Styling
 .shows {
+    @include tablet-breakpoint {
+        padding: 0 2.25rem;
+    }
+
+    @include desktop-breakpoint {
+        padding: 0 2.25rem;
+        @include flex(row, space-between, baseline, null);
+    }
+
     &__header {
         padding: 1.5rem 1rem 0.5rem 1rem;
+
+        @include tablet-breakpoint {
+            padding: 2rem 0;
+        }
+
+        @include desktop-breakpoint {
+            padding: 2rem 0 2rem 4rem;
+            flex: 1;
+            font-size: 2.875rem;
+        }
+    }
+
+    &__details {
+        @include desktop-breakpoint {
+            flex: 3;
+        }
+    }
+
+    &__headers {
+        display: none;
+
+        @include tablet-breakpoint {
+            @include flex(row, flex-start, center, null);
+            color: $secondary-text-color;
+            font-size: .8rem;
+            padding-bottom: 0.5rem;
+            column-gap: 12.5rem;
+        }
+
+        @include desktop-breakpoint {
+            @include flex(row, null, center, null);
+            color: $secondary-text-color;
+            font-size: .8rem;
+            padding-bottom: 0.5rem;
+            column-gap: 14rem;
+        }
+
+        // &__div {
+        //     @include tablet-breakpoint {
+        //         flex: 1;
+        //         text-align: left;
+        //     }
+        // }
     }
 
     &__details {
         padding-bottom: 1rem;
-    }
+
+        @include tablet-breakpoint {
+            padding-bottom: 2rem;
+        }
+
+        @include desktop-breakpoint {
+            padding-bottom: 2rem;
+        }
+}
 
     &__show {
         padding: 1rem 1rem 1rem 1rem;
         border-bottom: 1px solid $secondary-inactive-color;
+
+        @include tablet-breakpoint {
+            @include flex(row, space-between, center, null);
+            padding: 1rem 0;
+            flex: 1;
+            text-align: left;
+        }
+
+        @include desktop-breakpoint {
+            @include flex(row, space-between, center, null);
+            padding: 1rem 0;
+        }
     }
 
     &__dates {
         padding-bottom: 1rem;
 
+        @include tablet-breakpoint {
+                padding: 0;
+                flex: 1;
+                text-align: left;
+        }
+
+        @include desktop-breakpoint {
+                padding: 0;
+                flex: 1;
+                text-align: left;
+        }
+
         &-header {
             color: $secondary-text-color;
             font-size: .6875rem;
             padding-bottom: 0.5rem;
+
+            @include tablet-breakpoint {
+                display: none;
+                padding-bottom: 0;
+            }
+
+            @include desktop-breakpoint {
+                display: none;
+                padding-bottom: 0;
+            }
         }
 
         &-date {
             font-size: .8125rem;
             font-weight: 700;
+
+            @include tablet-breakpoint {
+                font-size: 0.94rem;
+            }
+
+            @include desktop-breakpoint {
+                font-size: 0.94rem;
+            }
         }
     }
 
     &__venue {
         @extend .shows__dates;
+
+        @include tablet-breakpoint {
+            flex: 1;
+            text-align: left;
+        }
+
+        @include desktop-breakpoint {
+            flex: 1;
+            text-align: left;
+        }
 
         &-header {
             @extend .shows__dates-header;
@@ -213,16 +364,42 @@
         &-venue {
             font-size: .8125rem;
             font-weight: 400;
+
+            @include tablet-breakpoint {
+                font-size: 0.94rem;
+            }
+
+            @include desktop-breakpoint {
+                font-size: 0.94rem;
+            }
         }
     }
 
     &__location {
+        @include tablet-breakpoint {
+            flex: 1;
+            text-align: left;
+        }
+
+        @include desktop-breakpoint {
+            flex: 1;
+            text-align: left;
+        }
+
         &-header {
             @extend .shows__dates-header;
         }
 
         &-location {
             @extend .shows__venue-venue;
+
+            @include tablet-breakpoint {
+                font-size: 0.94rem;
+            }
+
+            @include desktop-breakpoint {
+                font-size: 0.94rem;
+            }
         }
     }
 
@@ -235,6 +412,16 @@
         @include flex(row, center, center, null);
         margin-top: 1rem;
         font-weight: 500;
+
+        @include tablet-breakpoint {
+            width: 20%;
+            margin: 0;
+        }
+
+        @include desktop-breakpoint {
+            width: 20%;
+            margin: 0;
+        }
     }
 }
 
