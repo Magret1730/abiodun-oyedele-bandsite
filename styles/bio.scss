@@ -409,6 +409,7 @@
 
             &:focus {
                 border: .0625rem solid $primary-bg-color;
+                outline: none;
             }
         }
     }
@@ -421,7 +422,7 @@
         }
 
         &-input {
-            height: 12vh;
+            height: 15vh;
             width: 100%;
             padding: .75rem;
             border-radius: .25rem;
@@ -430,12 +431,12 @@
         
             &:focus {
                 border: .0625rem solid $primary-bg-color;
+                outline: none;
             }
         }
     }
 
     &__button {
-        // vertical-align: ;
         width: 100%;
         height: 5.5vh;
         border-radius: .25rem;
@@ -444,10 +445,39 @@
         font-weight: 500;
         font-size: 1.1rem;
 
+
+
         &:hover {
             background-color: $secondary-hover-color;
         }
     }
+
+    &__error {
+        border: .0625rem solid #D22D2D;
+        outline: none;
+    }
+}
+
+// Comments Lists styling
+.comments__lists {
+    &-image {
+        @extend .comments__image;
+        background-color: $secondary-inactive-color;
+    }
+
+    // &-name {
+    //     &:focus {
+    //         // border: .0625rem solid $primary-bg-color;
+    //         // outline: none;
+    //     }
+    // }
+
+    // &-comment {
+    //     &:focus {
+    //         border: .0625rem solid $primary-bg-color;
+    //         outline: none;
+    //     }
+    // }
 }
 
 // Footer stylings
