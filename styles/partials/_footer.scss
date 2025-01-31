@@ -16,7 +16,6 @@
 
     @include desktop-breakpoint {
         @include header-desktop;
-        position: relative;
     }
 
     &__section {
@@ -46,10 +45,7 @@
         }
 
         @include desktop-breakpoint {
-            position: absolute;
-            top: 13%;
             left: 82%;
-            bottom: auto;
         }
     }
 
@@ -67,9 +63,6 @@
         }
 
         @include desktop-breakpoint {
-            margin-top: 3%;
-            @include flex(row, flex-start, center, null);
-            width: 100%;
             gap: 7rem;
         }
 
@@ -94,12 +87,6 @@
                 gap: 2.5rem;
                 margin-left: 2rem;
             }
-
-            @include desktop-breakpoint {
-                @include flex(row, flex-end, center, null);
-                gap: 2.5rem;
-                margin-left: 2rem;
-            }
         }
     }
 
@@ -116,14 +103,7 @@
             margin-bottom: 2rem;
         }
 
-        @include desktop-breakpoint {
-            @include flex(row, space-evenly, center, null);
-            line-height: 5rem;
-            letter-spacing: 0.01rem;
-            margin-bottom: 2rem;
-        }
-
-        &-1 {
+        &-beesknees {
             &-title {
                 @include type-kit(0.9rem, null, 700);
 
@@ -139,10 +119,6 @@
                 @include tablet-breakpoint {
                     @include type-kit(0.9rem, 1.4rem, 400);
                 }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
             }
 
             &-email {
@@ -151,16 +127,12 @@
                 @include tablet-breakpoint {
                     @include type-kit(0.8rem, null, 300);
                 }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
             }
         }
 
-        &-2 {
+        &-limitless {
             &-title {
-                @extend .footer__info-1-title;
+                @extend .footer__info-beesknees-title;
 
                 @include desktop-breakpoint {
                     @include type-kit(0.9rem, null, 500);
@@ -168,33 +140,25 @@
             }
 
             &-address {
-                @extend .footer__info-1-address;
+                @extend .footer__info-beesknees-address;
 
                 @include tablet-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-
-                @include desktop-breakpoint {
                     @include type-kit(0.9rem, 1.4rem, 400);
                 }
             }
 
             &-email {
-                @extend .footer__info-1-email;
+                @extend .footer__info-beesknees-email;
 
                 @include tablet-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-
-                @include desktop-breakpoint {
                     @include type-kit(0.8rem, null, 300);
                 }
             }
         }
 
-        &-3 {
+        &-arch {
             &-title {
-                @extend .footer__info-1-title;
+                @extend .footer__info-beesknees-title;
 
                 @include desktop-breakpoint {
                     @include type-kit(0.9rem, null, 500);
@@ -202,25 +166,17 @@
             }
 
             &-address {
-                @extend .footer__info-1-address;
+                @extend .footer__info-beesknees-address;
 
                 @include tablet-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-
-                @include desktop-breakpoint {
                     @include type-kit(0.9rem, 1.4rem, 400);
                 }
             }
 
             &-email {
-                @extend .footer__info-1-email;
+                @extend .footer__info-beesknees-email;
 
                 @include tablet-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-
-                @include desktop-breakpoint {
                     @include type-kit(0.8rem, null, 300);
                 }
             }

@@ -110,8 +110,6 @@ for (let i = 0; i < shows.length; i++) {
     showHousing.appendChild(showContainer);
 
     // Attaching them all to the shows__details
-    // showDetails.appendChild(showHeaders);
-    // showDetails.appendChild(showContainer);
     showDetails.appendChild(showHousing);
 }
 
@@ -133,24 +131,3 @@ showsEl.forEach((show) => {
         clickedShow.classList.add("shows__show--selected");
     });
 });
-
-// Selected function on the nav bar
-// const navEl = document.querySelectorAll(".nav__items-link");
-// console.log(navEl);
-
-// navEl.forEach((nav) => {
-//     nav.addEventListener("click", (e) => {
-//         const clickedLink = e.currentTarget;
-//         console.log(clickedLink);
-
-//         if (clickedLink.classList.contains("nav__items-link--selected")) {
-//             return;
-//         }
-
-//         navEl.forEach((item) => {
-//             item.classList.remove("nav__items-link--selected");
-//         });
-
-//         clickedLink.classList.add("nav__items-link--selected");
-//     });
-// });

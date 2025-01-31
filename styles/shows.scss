@@ -61,7 +61,6 @@
         @include tablet-breakpoint {
             font-size: 3rem;
             padding: 0;
-            // width: 73%;
             font-weight: 700;
         }
 
@@ -70,12 +69,7 @@
             padding-left: 4rem;
             font-weight: 700;
             width: 50%;
-            // padding: 0 0 0 4rem;
         }
-
-        // &-pad {
-        //     padding-bottom: 1rem;
-        // }
     }
 
     &__iframe {
@@ -95,13 +89,6 @@
             border-radius: .3125rem;
         }
     }
-
-    // &__overlay {
-    //     width: 100%;
-    //     height: 40vh;
-    //     background-color: $primary-bg-color;
-        
-    // }
 }
 
 // Shows Styling
@@ -111,7 +98,6 @@
     }
 
     @include desktop-breakpoint {
-        padding: 0 2.25rem;
         @include flex(row, space-between, baseline, null);
     }
 
@@ -141,35 +127,21 @@
         @include tablet-breakpoint {
             @include flex(row, flex-start, center, null);
             color: $secondary-text-color;
-            font-size: .8rem;
+            font-size: 0.8rem;
             padding-bottom: 0.5rem;
-            column-gap: 12.5rem;
+            column-gap: 13rem;
         }
 
         @include desktop-breakpoint {
             @include flex(row, null, center, null);
-            color: $secondary-text-color;
-            font-size: .8rem;
-            padding-bottom: 0.5rem;
-            column-gap: 14rem;
+            padding-left: 1.5rem;
         }
-
-        // &__div {
-        //     @include tablet-breakpoint {
-        //         flex: 1;
-        //         text-align: left;
-        //     }
-        // }
     }
 
     &__details {
         padding-bottom: 1rem;
 
         @include tablet-breakpoint {
-            padding-bottom: 2rem;
-        }
-
-        @include desktop-breakpoint {
             padding-bottom: 2rem;
         }
     }       
@@ -180,14 +152,14 @@
 
         @include tablet-breakpoint {
             @include flex(row, space-between, center, null);
-            padding: 1rem 0;
+            padding: 1rem 1rem;
             flex: 1;
             text-align: left;
         }
 
         @include desktop-breakpoint {
             @include flex(row, space-between, center, null);
-            padding: 1rem 0;
+            padding: 1rem 1rem;
         }
 
         &:hover {
@@ -208,23 +180,12 @@
                 text-align: left;
         }
 
-        @include desktop-breakpoint {
-                padding: 0;
-                flex: 1;
-                text-align: left;
-        }
-
         &-header {
             color: $secondary-text-color;
             font-size: .6875rem;
             padding-bottom: 0.5rem;
 
             @include tablet-breakpoint {
-                display: none;
-                padding-bottom: 0;
-            }
-
-            @include desktop-breakpoint {
                 display: none;
                 padding-bottom: 0;
             }
@@ -237,10 +198,6 @@
             @include tablet-breakpoint {
                 font-size: 0.94rem;
             }
-
-            @include desktop-breakpoint {
-                font-size: 0.94rem;
-            }
         }
     }
 
@@ -248,11 +205,6 @@
         @extend .shows__dates;
 
         @include tablet-breakpoint {
-            flex: 1;
-            text-align: left;
-        }
-
-        @include desktop-breakpoint {
             flex: 1;
             text-align: left;
         }
@@ -268,20 +220,11 @@
             @include tablet-breakpoint {
                 font-size: 0.94rem;
             }
-
-            @include desktop-breakpoint {
-                font-size: 0.94rem;
-            }
         }
     }
 
     &__location {
         @include tablet-breakpoint {
-            flex: 1;
-            text-align: left;
-        }
-
-        @include desktop-breakpoint {
             flex: 1;
             text-align: left;
         }
@@ -294,10 +237,6 @@
             @extend .shows__venue-venue;
 
             @include tablet-breakpoint {
-                font-size: 0.94rem;
-            }
-
-            @include desktop-breakpoint {
                 font-size: 0.94rem;
             }
         }
@@ -315,11 +254,6 @@
         font-size: .9375rem;
 
         @include tablet-breakpoint {
-            width: 20%;
-            margin: 0;
-        }
-
-        @include desktop-breakpoint {
             width: 20%;
             margin: 0;
         }

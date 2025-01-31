@@ -79,10 +79,6 @@
         @include tablet-breakpoint {
             @include section-spacing-tablet-desktop;
         }
-
-        @include desktop-breakpoint {
-            @include section-spacing-tablet-desktop
-        }
     }
 
     &__image {
@@ -170,11 +166,12 @@
             @include tablet-breakpoint {
                 @include flex(row, space-between, center, nowrap);
                 font-size: 1rem;
+                padding-bottom: 1rem;
             }
 
             @include desktop-breakpoint {
                 @include flex(row, space-between, center, nowrap);
-                font-size: 1rem;
+                padding-bottom: 1.5rem;
             }
         }
 
@@ -188,8 +185,6 @@
             }
 
             @include desktop-breakpoint {
-                margin: 1rem 0 0 0;
-                line-height: 1.5rem;
                 width: 48%;
             }
         }
@@ -202,10 +197,6 @@
     background-color: $alternative-light-bg;
 
     @include tablet-breakpoint {
-        @include section-spacing-tablet-desktop;
-    }
-
-    @include desktop-breakpoint {
         @include section-spacing-tablet-desktop;
     }
 
@@ -226,12 +217,12 @@
     &__photos {
         @include tablet-breakpoint {
             @include flex(row, space-between, center, wrap);
-            padding: 0;
+            padding: 0 0 0.7rem 0;
         }
 
         @include desktop-breakpoint {
             @include flex(row, space-evenly, center, wrap);
-            padding: 0 2.2rem;
+            padding: 0 2.2rem 1.5rem 2.2rem;
         }
 
         &-photo {
@@ -244,7 +235,6 @@
             }
 
             @include desktop-breakpoint {
-                width: 30%;
                 margin-top: 1.5rem;
             }
         }
@@ -277,7 +267,6 @@
 
         @include desktop-breakpoint {
             font-size: 3rem;
-            padding-top: 1.15rem;
         }
     }
 
@@ -298,10 +287,6 @@
         @include tablet-breakpoint {
             padding-top: 1rem;
         }
-
-        @include desktop-breakpoint {
-            padding-top: 1rem;
-        }
     }
 
     &__image {
@@ -314,20 +299,12 @@
             width: 6.3vh;
             height: 6.3vh;
         }
-
-        @include desktop-breakpoint {
-            width: 6.3vh;
-            height: 6.3vh;
-        }
     }
 
     &__form {
+        @include flex(column, null, null, null);
         flex: 1;
     }
-
-    // &__name-container {
-    //     @include flex(row, null, flex-end, null);
-    // }
 
     &__name {
         @include flex(column, null, flex-start, null);
@@ -345,7 +322,6 @@
             width: 100%;
             padding: .75rem;
             border-radius: .25rem;
-            // margin: .25rem;
             border: .0625rem solid $secondary-inactive-color;
 
             &:focus {
@@ -367,7 +343,6 @@
             width: 100%;
             padding: .75rem;
             border-radius: .25rem;
-            // margin: .25rem;
             border: .0625rem solid $secondary-inactive-color;
         
             &:focus {
@@ -386,7 +361,11 @@
         font-weight: 500;
         font-size: 1.1rem;
 
-
+        @include tablet-breakpoint {
+            margin-top: 1rem;
+            width: 35%;
+            align-self: flex-end;
+        }
 
         &:hover {
             background-color: $secondary-hover-color;
@@ -408,11 +387,6 @@
             border-top: .0625rem solid $secondary-inactive-color;
     
             @include tablet-breakpoint {
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-    
-            @include desktop-breakpoint {
                 padding-top: 1rem;
                 padding-bottom: 1rem;
             }
@@ -439,18 +413,16 @@
             padding-left: 0.6rem;
             align-self: center;
             font-weight: 700;
-            // &:focus {
-            // border: .0625rem solid $primary-bg-color;
-            // outline: none;
-            // }
+
+            @include tablet-breakpoint {
+                padding-left: 0;
+            }
         }
     
         &-date {
-            // border: 2px solid red;
             color: $secondary-text-color;
             align-self: center;
             font-size: .875rem;
-            // font-weight: 500;
         }
     
         &-comment {

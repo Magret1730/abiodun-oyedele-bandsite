@@ -55,13 +55,13 @@
 // TABLET screen sizes are defined at 768px, but are applied to screen sizes from 768px to 1279px.
 // MOBILE screen sizes are defined at 320px, but are applied to screen sizes 767px and below.
 @mixin tablet-breakpoint {
-    @media (min-width: 768px) and (max-width: 1279px) {
+    @media (min-width: $tablet-breakpoints) {
         @content;
     }
 }
 
 @mixin desktop-breakpoint {
-    @media (min-width: 1280px) {
+    @media (min-width: $desktop-breakpoints) {
         @content;
     }
 }
