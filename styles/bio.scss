@@ -1,121 +1,13 @@
 @use "./partials/global" as *;
+@use "./partials/nav" as *;
 @use "./partials/variables" as *;
 @use "./partials/mixins" as *;
 @use "./partials/typography" as *;
+@use "./partials/footer" as *;
 
 // Nav styling
 .nav {
-    background-color: $primary-bg-color;
-    @include flex(column, null, center, null);
-    padding: 0.8rem 1rem 0 1rem;
-
-    @include tablet-breakpoint {
-        @include flex(row, flex-start, center, null);
-        margin: 0;
-        padding: 0 2.25rem;
-    }
-
-    @include desktop-breakpoint {
-        @include flex(row, null, center, null);
-        margin: 0;
-        padding: 0 2.25rem;
-    }
-
-    &__logo {
-        @include tablet-breakpoint {
-            width: 16%;
-            font-size: 2.2rem;
-        }
-
-        @include desktop-breakpoint {
-            width: 16%;
-            font-size: 2.4rem;
-        }
-
-        &-bandsite {
-            text-decoration: none;
-            color: $primary-text-color;
-            @include type-kit(1.5rem, 2rem, 400);
-
-            @include desktop-breakpoint {
-                width: 20%;
-                font-size: 2rem;
-                padding-left: 4rem;
-            }
-        }
-    }
-
-    &__items {
-        @include flex(row, space-between, center, null);
-        width: 50%;
-
-        @include tablet-breakpoint {
-            width: 22%;
-            @include flex(row, space-between, center, null);
-            margin-left: 2rem;
-            padding: 1.5rem 0;
-        }
-
-        @include desktop-breakpoint {
-            width: 15%;
-            @include flex(row, space-between, center, null);
-            margin-left: 4rem;
-            padding: 2rem 0;
-        }
-
-        &-link {
-            position: relative;
-            text-decoration: none;
-            color: $secondary-inactive-color;
-            padding-bottom: 0.4rem;
-            @include type-kit(.875rem, 1.375rem, 300);
-            border-bottom: 2px solid transparent;
-            width: fit-content;
-
-            @include tablet-breakpoint {
-                @include flex(row, space-between, center, null);
-                font-size: 1rem;
-                width: fit-content;
-                margin-top: 0.8rem;
-            }
-
-            @include desktop-breakpoint {
-                @include flex(row, space-between, center, null);
-                font-size: 1.2rem;
-                margin-top: 1rem;
-                width: fit-content;
-            }
-    
-            &:active {
-                font-weight: 700;
-                color: $primary-text-color;
-            }
-    
-            &:hover {
-                color: $primary-text-color;
-                font-weight: 500;
-            }
-
-            &:hover::after,
-            &:active::after {
-                content: "";
-                position: absolute;
-                bottom: -0.1rem;
-                left: 0;
-                right: 0;
-                height: 0.125rem;
-                border-bottom: 2px solid $primary-text-color;
-
-                @include tablet-breakpoint {
-                    bottom: -1.6rem;
-                }
-
-                @include desktop-breakpoint {
-                    bottom: -2.1rem;
-                }
-            }
-        }
-    }
+    @include headerNav;
 }
 
 // Hero Section
@@ -363,15 +255,53 @@
 .comments {
     padding: 1.5rem 1rem;
 
+    @include tablet-breakpoint {
+        padding-left: 2.25rem;
+        padding-right: 2.25rem;
+    }
+
+    @include desktop-breakpoint {
+        padding-left: 6.25rem;
+        padding-right: 6.25rem;
+    }
+
     &__header {
         font-weight: 500;
         font-size: 1.5rem;
         padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+            font-size: 2.5rem;
+            padding-top: 1.15rem;
+        }
+
+        @include desktop-breakpoint {
+            font-size: 3rem;
+            padding-top: 1.15rem;
+        }
+    }
+
+    &__contents {
+        @include tablet-breakpoint {
+            padding: 0 4rem;
+        }
+
+        @include desktop-breakpoint {
+            padding: 0 21rem;
+        }
     }
 
     &__table {
         @include flex(row, null, flex-start, null);
         width: 100%;
+
+        @include tablet-breakpoint {
+            padding-top: 1rem;
+        }
+
+        @include desktop-breakpoint {
+            padding-top: 1rem;
+        }
     }
 
     &__image {
@@ -379,6 +309,16 @@
         height: 5.4vh;
         border-radius: 50%;
         margin-right: 1rem;
+
+        @include tablet-breakpoint {
+            width: 6.3vh;
+            height: 6.3vh;
+        }
+
+        @include desktop-breakpoint {
+            width: 6.3vh;
+            height: 6.3vh;
+        }
     }
 
     &__form {
@@ -397,6 +337,7 @@
             font-size: 0.7rem;
             font-weight: 500;
             color: $secondary-text-color;
+            width: 100%;
         }
         
         &-input {
@@ -404,7 +345,7 @@
             width: 100%;
             padding: .75rem;
             border-radius: .25rem;
-            margin: .25rem;
+            // margin: .25rem;
             border: .0625rem solid $secondary-inactive-color;
 
             &:focus {
@@ -426,7 +367,7 @@
             width: 100%;
             padding: .75rem;
             border-radius: .25rem;
-            margin: .25rem;
+            // margin: .25rem;
             border: .0625rem solid $secondary-inactive-color;
         
             &:focus {
@@ -456,265 +397,71 @@
         border: .0625rem solid #D22D2D;
         outline: none;
     }
-}
 
-// Comments Lists styling
-.comments__lists {
-    &-image {
-        @extend .comments__image;
-        background-color: $secondary-inactive-color;
+    // Comments Lists styling
+    &__lists {
+        @include flex(column, null, null, null);
+        width: 100%;
+        margin: 1.5rem 0 0 0;
+    
+        &-containers {
+            border-top: .0625rem solid $secondary-inactive-color;
+    
+            @include tablet-breakpoint {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+    
+            @include desktop-breakpoint {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+    
+            &--border-bottom {
+                border-bottom: .0625rem solid $secondary-inactive-color;
+            }
+        }
+    
+        &-container {
+            @include flex(row, flex-start, null, null);
+            width: 100%;
+        }
+    
+        &-image {
+            @extend .comments__image;
+            background-color: $secondary-inactive-color;
+            margin-top: 0.6rem;
+        }
+    
+        &-name {
+            font-size: .875rem;
+            flex: 3;
+            padding-left: 0.6rem;
+            align-self: center;
+            font-weight: 700;
+            // &:focus {
+            // border: .0625rem solid $primary-bg-color;
+            // outline: none;
+            // }
+        }
+    
+        &-date {
+            // border: 2px solid red;
+            color: $secondary-text-color;
+            align-self: center;
+            font-size: .875rem;
+            // font-weight: 500;
+        }
+    
+        &-comment {
+            margin: 0 0 0 4rem;
+            padding-bottom: 1rem;
+            font-weight: 400;
+        }
     }
-
-    // &-name {
-    //     &:focus {
-    //         // border: .0625rem solid $primary-bg-color;
-    //         // outline: none;
-    //     }
-    // }
-
-    // &-comment {
-    //     &:focus {
-    //         border: .0625rem solid $primary-bg-color;
-    //         outline: none;
-    //     }
-    // }
 }
 
 // Footer stylings
 .footer {
-    background-color: $primary-bg-color;
-    color: $primary-text-color;
-    position: relative;
-
-    @include tablet-breakpoint {
-        @include header-tablet;
-        position: relative;
-    }
-
-    @include desktop-breakpoint {
-        @include header-desktop;
-        position: relative;
-    }
-
-    &__section {
-        @include section-spacing-mobile;
-        @include flex(column, flex-start, flex-start, null);
-        padding: 0 1rem;
-
-        @include tablet-breakpoint {
-            padding: 0 2.25rem;
-        }
-
-        @include desktop-breakpoint {
-            padding: 0 0.5rem;
-        }
-    }
-
-    &__bandsite {
-        @include type-kit(1.8rem, null, 300);
-        order: 3;
-        margin-bottom: 0.7rem;
-
-        @include tablet-breakpoint {
-            position: absolute;
-            top: 13%;
-            left: 80%;
-            bottom: auto;
-        }
-
-        @include desktop-breakpoint {
-            position: absolute;
-            top: 13%;
-            left: 82%;
-            bottom: auto;
-        }
-    }
-
-    &__icons {
-        @include flex(column, null, null, null);
-        gap: 1rem;
-        margin-top: 5%;
-        order: 1;
-
-        @include tablet-breakpoint {
-            margin-top: 3%;
-            @include flex(row, flex-start, center, null);
-            width: 100%;
-            gap: 6.2rem;
-        }
-
-        @include desktop-breakpoint {
-            margin-top: 3%;
-            @include flex(row, flex-start, center, null);
-            width: 100%;
-            gap: 7rem;
-        }
-
-        &-text {
-            @include type-kit(1.5rem, null, 500);
-
-            @include tablet-breakpoint {
-                font-size: 2.1rem;
-            }
-
-            @include desktop-breakpoint {
-                font-size: 2.3rem;
-            }
-        }
-
-        &-images {
-            @include flex(row, null, null, null);
-            gap: 1.5rem;
-
-            @include tablet-breakpoint {
-                @include flex(row, flex-end, center, null);
-                gap: 2.5rem;
-                margin-left: 2rem;
-            }
-
-            @include desktop-breakpoint {
-                @include flex(row, flex-end, center, null);
-                gap: 2.5rem;
-                margin-left: 2rem;
-            }
-        }
-    }
-
-    &__info {
-        @include flex(column, null, null, null);
-        margin: 1rem 0 1.5rem 0;
-        @include type-kit(null, 2.5rem, null);
-        order: 2;
-
-        @include tablet-breakpoint {
-            @include flex(row, space-evenly, center, null);
-            line-height: 5rem;
-            letter-spacing: 0.01rem;
-            margin-bottom: 2rem;
-        }
-
-        @include desktop-breakpoint {
-            @include flex(row, space-evenly, center, null);
-            line-height: 5rem;
-            letter-spacing: 0.01rem;
-            margin-bottom: 2rem;
-        }
-
-        &-1 {
-            &-title {
-                @include type-kit(0.9rem, null, 700);
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, null, 500);
-                }
-            }
-
-            &-address {
-                @include type-kit(0.8rem, 1rem, 300);
-                width: 60%;
-
-                @include tablet-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-            }
-
-            &-email {
-                @include type-kit(0.7rem, null, 300);
-
-                @include tablet-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-            }
-        }
-
-        &-2 {
-            &-title {
-                @extend .footer__info-1-title;
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, null, 500);
-                }
-            }
-
-            &-address {
-                @extend .footer__info-1-address;
-
-                @include tablet-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-            }
-
-            &-email {
-                @extend .footer__info-1-email;
-
-                @include tablet-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-            }
-        }
-
-        &-3 {
-            &-title {
-                @extend .footer__info-1-title;
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, null, 500);
-                }
-            }
-
-            &-address {
-                @extend .footer__info-1-address;
-
-                @include tablet-breakpoint {
-                        @include type-kit(0.9rem, 1.4rem, 400);
-                    }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.9rem, 1.4rem, 400);
-                }
-            }
-
-            &-email {
-                @extend .footer__info-1-email;
-
-                @include tablet-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-
-                @include desktop-breakpoint {
-                    @include type-kit(0.8rem, null, 300);
-                }
-            }
-        }
-    }
-
-    &__copyright {
-        font-size: 0.6rem;
-        margin-bottom: 5%;
-        order: 4;
-
-        @include tablet-breakpoint {
-            @include type-kit(0.9rem, null, 300);
-        }
-
-        @include desktop-breakpoint {
-            @include type-kit(0.9rem, null, 400);
-        }
-    }
+    @include footerStyles;
 }

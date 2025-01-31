@@ -31,29 +31,34 @@ const shows = [
     },
 ];
 
+// Helper function
+function createDiv(className, text) {
+    const divEl = document.createElement("div");
+    divEl.classList.add(className);
+    divEl.textContent = text;
+
+    return divEl;
+}
+
 
 const showDetails = document.querySelector(".shows__details");
 
 const showHeaders = document.createElement("section");
 showHeaders.classList.add("shows__headers")
-const dateHead = document.createElement("div");
-dateHead.classList.add("shows__headers-div");
-dateHead.textContent = "DATE";
-const venueHead = document.createElement("div");
-venueHead.classList.add("shows__headers-div");
-venueHead.textContent = "VENUE";
-const locationHead = document.createElement("div");
-locationHead.classList.add("shows__headers-div");
-locationHead.textContent = "LOCATION";
-// const emptyHead = document.createElement("div");
-// emptyHead.classList.add("shows__headers-div");
-// emptyHead.textContent = "EMPTY";
+
+const dateHead = createDiv("shows__headers-div", "DATE");
+const venueHead = createDiv("shows__headers-div", "VENUE");
+const locationHead = createDiv("shows__headers-div", "LOCATION");
+
 showHeaders.appendChild(dateHead);
 showHeaders.appendChild(venueHead);
 showHeaders.appendChild(locationHead);
-// showHeaders.appendChild(emptyHead);
 
 showDetails.appendChild(showHeaders);
+
+// This envelopes all the shows__show
+const showHousing = document.createElement("div");
+showHousing.classList.add("shows__housing");
 
 
 for (let i = 0; i < shows.length; i++) {
@@ -63,12 +68,9 @@ for (let i = 0; i < shows.length; i++) {
     // Date
     const dateSection = document.createElement("section");
     dateSection.classList.add("shows__dates");
-    const dateHeader = document.createElement("div");
-    dateHeader.classList.add("shows__dates-header");
-    dateHeader.innerHTML = "DATE";
-    const dateDiv = document.createElement("div");
-    dateDiv.classList.add("shows__dates-date");
-    dateDiv.innerHTML = shows[i].date;
+
+    const dateHeader = createDiv("shows__dates-header", "DATE");
+    const dateDiv = createDiv("shows__dates-date", shows[i].date);
 
     dateSection.appendChild(dateHeader);
     dateSection.appendChild(dateDiv);
@@ -76,13 +78,9 @@ for (let i = 0; i < shows.length; i++) {
     // Venue
     const venueSection = document.createElement("section");
     venueSection.classList.add("shows__venue");
-    const venueHeader = document.createElement("div");
-    venueHeader.classList.add("shows__venue-header");
-    venueHeader.innerHTML = "VENUE";
-    const venueDiv = document.createElement("div");
-    venueDiv.classList.add("shows__venue-venue");
 
-    venueDiv.innerHTML = shows[i].venue;
+    const venueHeader = createDiv("shows__venue-header", "VENUE");
+    const venueDiv = createDiv("shows__venue-venue", shows[i].venue);
 
     venueSection.appendChild(venueHeader);
     venueSection.appendChild(venueDiv);
@@ -90,31 +88,69 @@ for (let i = 0; i < shows.length; i++) {
     // Location
     const locationSection = document.createElement("section");
     locationSection.classList.add("shows__location");
-    const locationHeader = document.createElement("div");
-    locationHeader.classList.add("shows__location-header");
-    locationHeader.innerHTML = "LOCATION";
-    const locationDiv = document.createElement("div");
-    locationDiv.classList.add("shows__location-location");
 
-    locationDiv.innerHTML = shows[i].location;
+    const locationHeader = createDiv("shows__location-header", "LOCATION");
+    const locationDiv = createDiv("shows__location-location", shows[i].location);
 
     locationSection.appendChild(locationHeader);
     locationSection.appendChild(locationDiv);
 
     // Buttons
-    const dateButton = document.createElement("div");
-    dateButton.classList.add("shows__button");
-    dateButton.innerHTML = "BUY TICKETS";
+    const buttonEl = document.createElement("button");
+    buttonEl.classList.add("shows__button");
+    buttonEl.textContent = "BUY TICKETS"
 
     // Putting all(date, venue, location, buttons)
-    // inside different divs(shows__show)
+    // inside different divs(.shows__show)
     showContainer.appendChild(dateSection);
     showContainer.appendChild(venueSection);
     showContainer.appendChild(locationSection);
-    showContainer.appendChild(dateButton);
+    showContainer.appendChild(buttonEl);
+
+    showHousing.appendChild(showContainer);
 
     // Attaching them all to the shows__details
     // showDetails.appendChild(showHeaders);
-    showDetails.appendChild(showContainer);
+    // showDetails.appendChild(showContainer);
+    showDetails.appendChild(showHousing);
 }
 
+// Selected function on shows
+const showsEl = document.querySelectorAll(".shows__show");
+
+showsEl.forEach((show) => {
+    show.addEventListener("click", (e) => {
+        const clickedShow = e.currentTarget;
+
+        if (clickedShow.classList.contains("shows__show--selected")) {
+            return;
+        }
+
+        showsEl.forEach((item) => {
+            item.classList.remove("shows__show--selected");
+        });
+
+        clickedShow.classList.add("shows__show--selected");
+    });
+});
+
+// Selected function on the nav bar
+// const navEl = document.querySelectorAll(".nav__items-link");
+// console.log(navEl);
+
+// navEl.forEach((nav) => {
+//     nav.addEventListener("click", (e) => {
+//         const clickedLink = e.currentTarget;
+//         console.log(clickedLink);
+
+//         if (clickedLink.classList.contains("nav__items-link--selected")) {
+//             return;
+//         }
+
+//         navEl.forEach((item) => {
+//             item.classList.remove("nav__items-link--selected");
+//         });
+
+//         clickedLink.classList.add("nav__items-link--selected");
+//     });
+// });

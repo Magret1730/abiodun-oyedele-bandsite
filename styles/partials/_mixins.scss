@@ -1,3 +1,5 @@
+@use "../partials/variables" as *;
+
 @mixin type-kit($fontSize, $lineHeight, $fontWeight) {
     font-size: $fontSize;
     line-height: $lineHeight;

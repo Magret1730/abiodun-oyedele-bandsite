@@ -20,47 +20,56 @@ const commentsArray = [
 const commentForm = document.getElementById("comment-form");
 
 // Comment - List section
-commentsLists = document.getElementById("comments-lists");
+const commentsLists = document.getElementById("comments-lists");
 
 // Loops through the comments in the array
 for (let i = 0; i < commentsArray.length; i++) {
     display(commentsArray[i]);
+
+    //  Checks if this is the last comment
+    if (i === commentsArray.length - 1) {
+        const commentsContainers = document.getElementsByClassName("comments__lists-containers");
+        // Gets the last container in the collection
+        const lastContainer = commentsContainers[commentsContainers.length - 1];
+        lastContainer.classList.add("comments__lists-containers--border-bottom");
+    }
+}
+
+// Helper function
+function createDiv(className, text) {
+    const divEl = document.createElement("div");
+    divEl.classList.add(className);
+    divEl.textContent = text;
+
+    return divEl;
 }
 
 // Function to display name,comments and time from the array
 function display(comment) {
-    commentsContainer = document.createElement("div");
+    const commentsContainers = document.createElement("div");
+    commentsContainers.classList.add("comments__lists-containers");
+
+    const commentsContainer = document.createElement("div");
     commentsContainer.classList.add("comments__lists-container");
 
-    commentsImage = document.createElement("img");
+    const commentsImage = document.createElement("img");
     commentsImage.classList.add("comments__lists-image");
     commentsImage.classList.add("comments__image");
 
-    commentsName = document.createElement("div");
-    commentsName.classList.add("comments__lists-name");
-    commentsName.textContent = comment.name;
-
-    commentsDate = document.createElement("div");
-    commentsDate.classList.add("comments__lists-date");
-    commentsDate.textContent = formatTimestamp(comment.timestamp);
-
-    commentsComment = document.createElement("div");
-    commentsComment.classList.add("comments__lists-comment");
-    commentsComment.textContent = comment.commentText;
+    const commentsName = createDiv("comments__lists-name", comment.name);
+    const commentsDate = createDiv("comments__lists-date", formatTimestamp(comment.timestamp));
+    const commentsComment = createDiv("comments__lists-comment", comment.commentText);
 
     commentsContainer.appendChild(commentsImage);
     commentsContainer.appendChild(commentsName);
     commentsContainer.appendChild(commentsDate);
 
-    // This puts the commentsArray in descending order
-    // commentsLists.appendChild(commentsContainer);
-    // commentsLists.appendChild(commentsComment);
+    // This puts the commentsArray in ascending order of timestamp
+    commentsContainers.prepend(commentsComment);
+    commentsContainers.prepend(commentsContainer);
 
-    // This puts the commentsArray in ascending order
-    commentsLists.prepend(commentsComment);
-    commentsLists.prepend(commentsContainer);
+    commentsLists.prepend(commentsContainers);
 }
-
 
 // Function formats timestamp
 function formatTimestamp(timestamp) {

@@ -113,31 +113,28 @@
       </section>
       <section class="comments">
         <div class="comments__header">Join the conversation</div>
-        <section class="comments__table">
-          <img class="comments__image" src="./assets/images/Mohan-muruge.jpg" alt="Mohan-muruge">
-          <form class="comments__form" id="comment-form" action="">
-            <!-- <img class="comments__image" src="./assets/images/Mohan-muruge.jpg" alt="Mohan-muruge"> -->
-            <div class="comments__name">
-              <label class="comments__name-label" for="name-input">NAME</label>
-              <input class="comments__name-input" type="text" name="name" id="name-input" placeholder="Enter your name" > <!--required-->
-            </div>
-            <div class="comments__comment" id="">
-              <label class="comments__comment-label" for="comment-input">COMMENT</label>
-              <textarea class="comments__comment-input" name="comment" id="comment-input" placeholder="Add a new comment" cols="50" rows="10"></textarea> <!--required-->
-            </div>
-            <button class="comments__button" type="submit" id="comment-button">COMMENT</button>
-          </form>
-        </section>
-
-        <section class="comments__lists" id="comments-lists">
-          <!-- <div class="comments__lists-container">
-            <img class="comments__lists-image" src="#" alt="placeholder image">
-            <div class="comments__lists-name"></div>
-            <div class="comments__lists-date"></div>
-          </div>
-          <div class="comments__lists-comment"></div> -->
-        </section>
-
+        <article class="comments__contents">
+          <section class="comments__table">
+            <img class="comments__image" src="./assets/images/Mohan-muruge.jpg" alt="Mohan-muruge">
+            <form class="comments__form" id="comment-form" action="">
+              <div class="comments__name">
+                <label class="comments__name-label" for="name-input">NAME
+                  <input class="comments__name-input" type="text" name="name" id="name-input" placeholder="Enter your name" > <!--required-->
+                </label>
+                <!-- <input class="comments__name-input" type="text" name="name" id="name-input" placeholder="Enter your name" > required -->
+              </div>
+              <div class="comments__comment" id="">
+                <label class="comments__comment-label" for="comment-input">COMMENT
+                  <textarea class="comments__comment-input" name="comment" id="comment-input" placeholder="Add a new comment" cols="50" rows="10"></textarea> <!--required-->
+                </label>
+                <!-- <textarea class="comments__comment-input" name="comment" id="comment-input" placeholder="Add a new comment" cols="50" rows="10"></textarea> required -->
+              </div>
+              <button class="comments__button" type="submit" id="comment-button">COMMENT</button>
+            </form>
+          </section>
+          <section class="comments__lists" id="comments-lists">
+          </section>
+        </article>
       </section>
     </main>
     <footer class="footer">

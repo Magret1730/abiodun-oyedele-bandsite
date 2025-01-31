@@ -359,6 +359,12 @@ body {
     padding: 1rem 0;
   }
 }
+.shows__show:hover {
+  background-color: #FAFAFA;
+}
+.shows__show--selected {
+  background-color: #E1E1E1;
+}
 .shows__dates, .shows__venue {
   padding-bottom: 1rem;
 }
@@ -467,6 +473,7 @@ body {
   align-items: center;
   margin-top: 1rem;
   font-weight: 500;
+  font-size: 0.9375rem;
 }
 @media (min-width: 768px) and (max-width: 1279px) {
   .shows__button {
