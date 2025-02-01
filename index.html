@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bandsite</title>
-    <link rel="stylesheet" href="./styles/bios.css" />
+    <link rel="stylesheet" href="./styles/bio.css" />
+    <script src="./scripts/index-page.js" defer></script>
   </head>
   <body>
     <header>
@@ -14,7 +15,7 @@
         </section>
         <section class="nav__items">
           <a class="nav__items-link" href="index.html">Biography</a>
-          <a class="nav__items-link" href="#">Shows</a>
+          <a class="nav__items-link" href="pages/shows.html">Shows</a>
         </section>
       </nav>
     </header>
@@ -23,7 +24,7 @@
         <div class="hero__text">The Bees Knees</div>
       </section>
       <section class="about">
-        <div class="about__header">About the Musicians</div>
+        <h2 class="about__header">About the Musicians</h2>
         <div class="about__container">
           <img class="about__image" src="./assets/images/band.jpg" alt="band" />
           <p class="about__quote">
@@ -61,7 +62,7 @@
         </div>
       </section>
       <section class="gallery">
-        <div class="gallery__header">Photo Gallery</div>
+        <h2 class="gallery__header">Photo Gallery</h2>
         <div class="gallery__photos">
           <img
             class="gallery__photos-photo"
@@ -110,6 +111,55 @@
           />
         </div>
       </section>
+      <section class="comments">
+        <div class="comments__header">Join the conversation</div>
+        <article class="comments__contents">
+          <section class="comments__table">
+            <img
+              class="comments__image"
+              src="./assets/images/Mohan-muruge.jpg"
+              alt="Mohan-muruge"
+            />
+            <form class="comments__form" id="comment-form" action="">
+              <div class="comments__name">
+                <label class="comments__name-label" for="name-input"
+                  >NAME
+                  <input
+                    class="comments__name-input"
+                    type="text"
+                    name="name"
+                    id="name-input"
+                    placeholder="Enter your name"
+                  />
+                  <!--required-->
+                </label>
+              </div>
+              <div class="comments__comment" id="">
+                <label class="comments__comment-label" for="comment-input"
+                  >COMMENT
+                  <textarea
+                    class="comments__comment-input"
+                    name="comment"
+                    id="comment-input"
+                    placeholder="Add a new comment"
+                    cols="50"
+                    rows="10"
+                  ></textarea>
+                  <!--required-->
+                </label>
+                <button
+                  class="comments__button"
+                  type="submit"
+                  id="comment-button"
+                >
+                  COMMENT
+                </button>
+              </div>
+            </form>
+          </section>
+          <section class="comments__lists" id="comments-lists"></section>
+        </article>
+      </section>
     </main>
     <footer class="footer">
       <section class="footer__section">
@@ -136,34 +186,36 @@
           <section class="footer__icons-empty"></section>
         </article>
         <article class="footer__info">
-          <article class="footer__info-1">
-            <section class="footer__info-1-title">
+          <article class="footer__info-beesknees">
+            <section class="footer__info-beesknees-title">
               The Bees Knees Management
             </section>
-            <section class="footer__info-1-address">
+            <section class="footer__info-beesknees-address">
               503 Broadway Penthouse, New York, NY 10012, USA
             </section>
-            <section class="footer__info-1-email">
+            <section class="footer__info-beesknees-email">
               info@thebeesknees.com
             </section>
           </article>
-          <article class="footer__info-2">
-            <section class="footer__info-2-title">
+          <article class="footer__info-limitless">
+            <section class="footer__info-limitless-title">
               Limitless Artist Group
             </section>
-            <section class="footer__info-2-address">
+            <section class="footer__info-limitless-address">
               Booking Agent for US / South America / Japan
             </section>
-            <section class="footer__info-2-email">
+            <section class="footer__info-limitless-email">
               bookings@limitlessag.com
             </section>
           </article>
-          <article class="footer__info-3">
-            <section class="footer__info-3-title">ARCH Entertainment</section>
-            <section class="footer__info-3-address">
+          <article class="footer__info-arch">
+            <section class="footer__info-arch-title">
+              ARCH Entertainment
+            </section>
+            <section class="footer__info-arch-address">
               Booking Agent for UK / EU / AU
             </section>
-            <section class="footer__info-3-email">
+            <section class="footer__info-arch-email">
               bookings@archentertainment.com
             </section>
           </article>

@@ -1,0 +1,266 @@
+@use "./partials/global" as *;
+@use "./partials/nav" as *;
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+@use "./partials/typography" as *;
+@use "./partials/footer" as *;
+
+// Nav styling
+.nav {
+    @include headerNav;
+}
+
+// Hero Section
+.hero {
+    @include flex(column, center, null, null);
+    background-color: $primary-bg-color;
+    background-image: url("../assets/images/hero-shows.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 2rem 1rem;
+    background-blend-mode: soft-light;
+
+    @include tablet-breakpoint {
+        padding: 2rem 2rem;
+    }
+
+    @include desktop-breakpoint {
+        @include flex(column, null, null, null);
+        padding: 0 2.25rem;
+        height: 90vh;
+    }
+
+    &__header {
+        color: $primary-text-color;
+        @include type-kit(0.9rem, null, 500);
+        padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+            font-size: 1.5rem;
+            padding-top: 1rem;
+        }
+
+        @include desktop-breakpoint {
+            padding-left: 4rem;
+            font-size: 1.6rem;
+        }
+    }
+
+    &__container {
+        @include desktop-breakpoint {
+            @include flex(row, space-between, center, null);
+        }
+    }
+
+    &__text {
+        color: $primary-text-color;
+        @include type-kit(1.5rem, null, 500);
+        padding-bottom: 1rem;
+        width: 75%;
+
+        @include tablet-breakpoint {
+            font-size: 3rem;
+            padding: 0;
+            font-weight: 700;
+        }
+
+        @include desktop-breakpoint {
+            font-size: 4.5rem;
+            padding-left: 4rem;
+            font-weight: 700;
+            width: 50%;
+        }
+    }
+
+    &__iframe {
+        padding: 2rem auto;
+        height: 15vh;
+
+        @include tablet-breakpoint {
+            width: 60%;
+            padding-top: 2rem;
+            height: 25vh;
+        }
+
+        @include desktop-breakpoint {
+            padding-right: 3rem;
+            width: 40%;
+            height: 21vh;
+            border-radius: .3125rem;
+        }
+    }
+}
+
+// Shows Styling
+.shows {
+    @include tablet-breakpoint {
+        padding: 0 2.25rem;
+    }
+
+    @include desktop-breakpoint {
+        @include flex(row, space-between, baseline, null);
+    }
+
+    &__header {
+        padding: 1.5rem 1rem 0.5rem 1rem;
+
+        @include tablet-breakpoint {
+            padding: 2rem 0;
+        }
+
+        @include desktop-breakpoint {
+            padding: 2rem 0 2rem 4rem;
+            flex: 1;
+            font-size: 2.875rem;
+        }
+    }
+
+    &__details {
+        @include desktop-breakpoint {
+            flex: 3;
+        }
+    }
+
+    &__headers {
+        display: none;
+
+        @include tablet-breakpoint {
+            @include flex(row, flex-start, center, null);
+            color: $secondary-text-color;
+            font-size: 0.8rem;
+            padding-bottom: 0.5rem;
+            column-gap: 13rem;
+        }
+
+        @include desktop-breakpoint {
+            @include flex(row, null, center, null);
+            padding-left: 1.5rem;
+        }
+    }
+
+    &__details {
+        padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+            padding-bottom: 2rem;
+        }
+    }       
+
+    &__show {
+        padding: 1rem 1rem 1rem 1rem;
+        border-bottom: 1px solid $secondary-inactive-color;
+
+        @include tablet-breakpoint {
+            @include flex(row, space-between, center, null);
+            padding: 1rem 1rem;
+            flex: 1;
+            text-align: left;
+        }
+
+        @include desktop-breakpoint {
+            @include flex(row, space-between, center, null);
+            padding: 1rem 1rem;
+        }
+
+        &:hover {
+            background-color: $alternative-light-bg;
+        }
+
+        &--selected {
+            background-color: $secondary-inactive-color;
+        }
+    }
+
+    &__dates {
+        padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+                padding: 0;
+                flex: 1;
+                text-align: left;
+        }
+
+        &-header {
+            color: $secondary-text-color;
+            font-size: .6875rem;
+            padding-bottom: 0.5rem;
+
+            @include tablet-breakpoint {
+                display: none;
+                padding-bottom: 0;
+            }
+        }
+
+        &-date {
+            font-size: .8125rem;
+            font-weight: 700;
+
+            @include tablet-breakpoint {
+                font-size: 0.94rem;
+            }
+        }
+    }
+
+    &__venue {
+        @extend .shows__dates;
+
+        @include tablet-breakpoint {
+            flex: 1;
+            text-align: left;
+        }
+
+        &-header {
+            @extend .shows__dates-header;
+        }
+
+        &-venue {
+            font-size: .8125rem;
+            font-weight: 400;
+
+            @include tablet-breakpoint {
+                font-size: 0.94rem;
+            }
+        }
+    }
+
+    &__location {
+        @include tablet-breakpoint {
+            flex: 1;
+            text-align: left;
+        }
+
+        &-header {
+            @extend .shows__dates-header;
+        }
+
+        &-location {
+            @extend .shows__venue-venue;
+
+            @include tablet-breakpoint {
+                font-size: 0.94rem;
+            }
+        }
+    }
+
+    &__button {
+        background-color: $primary-bg-color;
+        height: 5.5vh;
+        width: 100%;
+        border-radius: .25rem;
+        color: $primary-text-color;
+        @include flex(row, center, center, null);
+        margin-top: 1rem;
+        font-weight: 500;
+        font-size: .9375rem;
+
+        @include tablet-breakpoint {
+            width: 20%;
+            margin: 0;
+        }
+    }
+}
+
+// Footer stylings
+.footer {
+    @include footerStyles;
+}

@@ -1,0 +1,439 @@
+@use "./partials/global" as *;
+@use "./partials/nav" as *;
+@use "./partials/variables" as *;
+@use "./partials/mixins" as *;
+@use "./partials/typography" as *;
+@use "./partials/footer" as *;
+
+// Nav styling
+.nav {
+    @include headerNav;
+}
+
+// Hero Section
+.hero {
+    background-color: $primary-bg-color;
+    background-image: url("../assets/images/hero-bio.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 6rem;
+    position: relative;
+    background-blend-mode: soft-light;
+    height: 30vh;
+
+    @include tablet-breakpoint {
+        height: 55vh;
+    }
+
+    @include desktop-breakpoint {
+        height: 80vh;
+    }
+
+    &__text {
+        color: $primary-text-color;
+        position: absolute;
+        top: 40%;
+        left: 0;
+        padding: 0 1rem;
+        @include type-kit(1.9rem, null, 500);
+
+        @include tablet-breakpoint {
+            font-size: 4.2rem;
+            padding: 0 2.25rem;
+        }
+    
+        @include desktop-breakpoint {
+            font-size: 4rem;
+            padding: 0 5rem;
+            font-weight: 700;
+            padding-left: 6.25rem;
+        }
+    }
+}
+
+// About styling
+.about {
+    @include section-spacing-mobile;
+    background-color: $primary-text-color;
+
+    @include desktop-breakpoint {
+        padding: 0 2.25rem;
+    }
+
+    &__header {
+        @include header-mobile;
+        padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+            @include header-tablet;
+            padding-left: 1.25rem;
+        }
+
+        @include desktop-breakpoint {
+            @include header-desktop;
+            padding-left: 4rem;
+        }
+    }
+
+    &__container {
+        @include tablet-breakpoint {
+            @include section-spacing-tablet-desktop;
+        }
+    }
+
+    &__image {
+        @include image-mobile;
+
+        @include tablet-breakpoint {
+            @include section-tablet;
+        }
+
+        @include desktop-breakpoint {
+            width: 80%;
+            margin: 0 1rem 0 8rem;
+            height: 60vh;
+        }
+    }
+
+    &__quote {
+        @include type-kit(0.9rem, 1.5rem, 500);
+        padding-top: 1rem;
+        word-spacing: 0.05rem;
+
+        @include tablet-breakpoint {
+            margin: 0rem 3.5rem;
+            font-size: 1.3rem;
+            line-height: 2rem;
+            max-width: 80%;
+            padding-top: 2.25rem;
+        }
+
+        @include desktop-breakpoint {
+            width: 70%;
+            margin: 1.5rem 1rem 0 8rem;
+            font-size: 1.3rem;
+        }
+    }
+
+    &__quotename {
+        @extend .about__quote;
+        
+        @include tablet-breakpoint {
+            @include section-tablet;
+            font-size: 1.3rem;
+            padding-top: 0;
+        }
+
+        @include desktop-breakpoint {
+            width: 70%;
+            margin: 0rem 1rem 0 8rem;
+            font-size: 1rem;
+        }
+    }
+
+    &__article {
+        @include flex(column, center, flex-start, null);
+
+        @include tablet-breakpoint {
+            @include section-tablet;
+        }
+    
+        @include desktop-breakpoint {
+            width: 80%;
+            margin: 2.5rem 1rem 0 8rem;
+        }
+
+        &-header {
+            padding-top: 1rem;
+            @include type-kit(0.9rem, null, 310);
+
+            @include tablet-breakpoint {
+                font-size: 2rem;
+                padding-top: 2.25rem;
+            }
+
+            @include desktop-breakpoint {
+                font-size: 1.5rem;
+                padding-top: 0;
+                padding-bottom: 1rem;
+            }
+        }
+
+        &-texts {
+            @include flex(column, flex-start, center, wrap);
+            @include type-kit(.8125rem, 1.125rem, 300);
+
+            @include tablet-breakpoint {
+                @include flex(row, space-between, center, nowrap);
+                font-size: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            @include desktop-breakpoint {
+                @include flex(row, space-between, center, nowrap);
+                padding-bottom: 1.5rem;
+            }
+        }
+
+        &-text {
+            margin: 1rem 0;
+
+            @include tablet-breakpoint {
+                margin: 1rem 0 0 0;
+                line-height: 1.5rem;
+                width: 47%;
+            }
+
+            @include desktop-breakpoint {
+                width: 48%;
+            }
+        }
+    }
+}
+
+// Gallery styling
+.gallery {
+    @include section-spacing-mobile;
+    background-color: $alternative-light-bg;
+
+    @include tablet-breakpoint {
+        @include section-spacing-tablet-desktop;
+    }
+
+    &__header {
+        @include header-mobile;
+
+        @include tablet-breakpoint {
+            @include header-tablet;
+        }
+
+        @include desktop-breakpoint {
+            @include header-desktop;
+            padding-bottom: 1rem; 
+            padding-left: 4rem;
+        }
+    }
+
+    &__photos {
+        @include tablet-breakpoint {
+            @include flex(row, space-between, center, wrap);
+            padding: 0 0 0.7rem 0;
+        }
+
+        @include desktop-breakpoint {
+            @include flex(row, space-evenly, center, wrap);
+            padding: 0 2.2rem 1.5rem 2.2rem;
+        }
+
+        &-photo {
+            @include image-mobile;
+            margin: 0.4rem 0;
+
+            @include tablet-breakpoint {
+                width: 30%;
+                margin-bottom: 1rem;
+            }
+
+            @include desktop-breakpoint {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+}
+
+// Comments styling
+.comments {
+    padding: 1.5rem 1rem;
+
+    @include tablet-breakpoint {
+        padding-left: 2.25rem;
+        padding-right: 2.25rem;
+    }
+
+    @include desktop-breakpoint {
+        padding-left: 6.25rem;
+        padding-right: 6.25rem;
+    }
+
+    &__header {
+        font-weight: 500;
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+
+        @include tablet-breakpoint {
+            font-size: 2.5rem;
+            padding-top: 1.15rem;
+        }
+
+        @include desktop-breakpoint {
+            font-size: 3rem;
+        }
+    }
+
+    &__contents {
+        @include tablet-breakpoint {
+            padding: 0 4rem;
+        }
+
+        @include desktop-breakpoint {
+            padding: 0 21rem;
+        }
+    }
+
+    &__table {
+        @include flex(row, null, flex-start, null);
+        width: 100%;
+
+        @include tablet-breakpoint {
+            padding-top: 1rem;
+        }
+    }
+
+    &__image {
+        width: 5.4vh;
+        height: 5.4vh;
+        border-radius: 50%;
+        margin-right: 1rem;
+
+        @include tablet-breakpoint {
+            width: 6.3vh;
+            height: 6.3vh;
+        }
+    }
+
+    &__form {
+        @include flex(column, null, null, null);
+        flex: 1;
+    }
+
+    &__name {
+        @include flex(column, null, flex-start, null);
+        margin-bottom: 1rem;
+
+        &-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: $secondary-text-color;
+            width: 100%;
+        }
+        
+        &-input {
+            height: 5.4vh;
+            width: 100%;
+            padding: .75rem;
+            border-radius: .25rem;
+            border: .0625rem solid $secondary-inactive-color;
+
+            &:focus {
+                border: .0625rem solid $primary-bg-color;
+                outline: none;
+            }
+        }
+    }
+
+    &__comment {
+        @extend .comments__name;
+
+        &-label {
+            @extend .comments__name-label;
+        }
+
+        &-input {
+            height: 15vh;
+            width: 100%;
+            padding: .75rem;
+            border-radius: .25rem;
+            border: .0625rem solid $secondary-inactive-color;
+        
+            &:focus {
+                border: .0625rem solid $primary-bg-color;
+                outline: none;
+            }
+        }
+    }
+
+    &__button {
+        width: 100%;
+        height: 5.5vh;
+        border-radius: .25rem;
+        color: $primary-text-color;
+        background-color: $primary-bg-color;
+        font-weight: 500;
+        font-size: 1.1rem;
+
+        @include tablet-breakpoint {
+            margin-top: 1rem;
+            width: 35%;
+            align-self: flex-end;
+        }
+
+        &:hover {
+            background-color: $secondary-hover-color;
+        }
+    }
+
+    &__error {
+        border: .0625rem solid #D22D2D;
+        outline: none;
+    }
+
+    // Comments Lists styling
+    &__lists {
+        @include flex(column, null, null, null);
+        width: 100%;
+        margin: 1.5rem 0 0 0;
+    
+        &-containers {
+            border-top: .0625rem solid $secondary-inactive-color;
+    
+            @include tablet-breakpoint {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+    
+            &--border-bottom {
+                border-bottom: .0625rem solid $secondary-inactive-color;
+            }
+        }
+    
+        &-container {
+            @include flex(row, flex-start, null, null);
+            width: 100%;
+        }
+    
+        &-image {
+            @extend .comments__image;
+            background-color: $secondary-inactive-color;
+            margin-top: 0.6rem;
+        }
+    
+        &-name {
+            font-size: .875rem;
+            flex: 3;
+            padding-left: 0.6rem;
+            align-self: center;
+            font-weight: 700;
+
+            @include tablet-breakpoint {
+                padding-left: 0;
+            }
+        }
+    
+        &-date {
+            color: $secondary-text-color;
+            align-self: center;
+            font-size: .875rem;
+        }
+    
+        &-comment {
+            margin: 0 0 0 4rem;
+            padding-bottom: 1rem;
+            font-weight: 400;
+        }
+    }
+}
+
+// Footer stylings
+.footer {
+    @include footerStyles;
+}
