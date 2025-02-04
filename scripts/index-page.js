@@ -1,20 +1,23 @@
-const commentsArray = [
-    {
-        name: "John Doe",
-        timestamp: "2025-01-29 10:15:00",
-        commentText: "This is a great post! The way you broke down the topic made it really easy to understand. I appreciate the effort you put into providing detailed insights and examples. Keep up the fantastic work!"
-    },
-    {
-        name: "Jane Smith",
-        timestamp: "2025-01-29 11:45:30",
-        commentText: "I really enjoyed reading this article. It's clear that you did thorough research before writing it. The examples you provided were very relatable, and I found myself learning new things as I read through. Thank you for such informative content!"
-    },
-    {
-        name: "Alex Johnson",
-        timestamp: "2025-01-29 13:20:10",
-        commentText: "Interesting perspective! I hadn't thought of it that way before. The way you approached this topic from multiple angles really made me rethink some of my previous assumptions. I'll definitely be sharing this with my friends!"
-    }
-];
+// const commentsArray = [
+//     {
+//         name: "John Doe",
+//         timestamp: "2025-01-29 10:15:00",
+//         commentText: "This is a great post! The way you broke down the topic made it really easy to understand. I appreciate the effort you put into providing detailed insights and examples. Keep up the fantastic work!"
+//     },
+//     {
+//         name: "Jane Smith",
+//         timestamp: "2025-01-29 11:45:30",
+//         commentText: "I really enjoyed reading this article. It's clear that you did thorough research before writing it. The examples you provided were very relatable, and I found myself learning new things as I read through. Thank you for such informative content!"
+//     },
+//     {
+//         name: "Alex Johnson",
+//         timestamp: "2025-01-29 13:20:10",
+//         commentText: "Interesting perspective! I hadn't thought of it that way before. The way you approached this topic from multiple angles really made me rethink some of my previous assumptions. I'll definitely be sharing this with my friends!"
+//     }
+// ];
+
+const BASE_URL = "https://unit-2-project-api-25c1595833b2.herokuapp.com";
+const API_KEY = "d170fe3b-635a-4ae9-8dd7-8ca996c6c013";
 
 // Form section
 const commentForm = document.getElementById("comment-form");
@@ -23,17 +26,17 @@ const commentForm = document.getElementById("comment-form");
 const commentsLists = document.getElementById("comments-lists");
 
 // Loops through the comments in the array
-for (let i = 0; i < commentsArray.length; i++) {
-    display(commentsArray[i]);
+// for (let i = 0; i < commentsArray.length; i++) {
+//     display(commentsArray[i]);
 
-    //  Checks if this is the last comment
-    if (i === commentsArray.length - 1) {
-        const commentsContainers = document.getElementsByClassName("comments__lists-containers");
-        // Gets the last container in the collection
-        const lastContainer = commentsContainers[commentsContainers.length - 1];
-        lastContainer.classList.add("comments__lists-containers--border-bottom");
-    }
-}
+//     //  Checks if this is the last comment
+//     if (i === commentsArray.length - 1) {
+//         const commentsContainers = document.getElementsByClassName("comments__lists-containers");
+//         // Gets the last container in the collection
+//         const lastContainer = commentsContainers[commentsContainers.length - 1];
+//         lastContainer.classList.add("comments__lists-containers--border-bottom");
+//     }
+// }
 
 // Helper function
 function createDiv(className, text) {
@@ -58,7 +61,7 @@ function display(comment) {
 
     const commentsName = createDiv("comments__lists-name", comment.name);
     const commentsDate = createDiv("comments__lists-date", formatTimestamp(comment.timestamp));
-    const commentsComment = createDiv("comments__lists-comment", comment.commentText);
+    const commentsComment = createDiv("comments__lists-comment", comment.comment);
 
     commentsContainer.appendChild(commentsImage);
     commentsContainer.appendChild(commentsName);
@@ -74,8 +77,8 @@ function display(comment) {
 // Function formats timestamp
 function formatTimestamp(timestamp) {
     const now = new Date(); // Current time
-    const commentDate = new Date(timestamp); // Convert the comment's timestamp to a Date object
-    const timeDifference = now - commentDate; // Difference in milliseconds
+    const commentDate = new Date(timestamp); // Convert the comment's timestamp to a Date
+    const timeDifference = now - (commentDate - 1000); // Difference in milliseconds.
 
     // Convert time difference to seconds, minutes, hours, days, etc.
     const seconds = Math.floor(timeDifference / 1000);
@@ -103,7 +106,41 @@ function formatTimestamp(timestamp) {
     }
 }
 
-commentForm.addEventListener("submit", (e) => {
+// Async function to Get comments
+async function getComments() {
+    try {
+        const response = await axios.get(`${BASE_URL}/comments?api_key=${API_KEY}`);
+        // console.log(response.data);
+
+        const comments = await response.data;
+
+        commentsLists.replaceChildren();
+
+        comments.forEach((comment) => {
+            // console.log(comment);
+
+            display(comment);
+        });
+
+    } catch (error) {
+        console.log("Error gotten from getComments function: ", error);
+    }
+}
+getComments();
+
+// Async function to Post comments
+async function postComments(newComment) {
+        try {
+        const response = await axios.post(`${BASE_URL}/comments?api_key=${API_KEY}`, newComment);
+        const newData = response.data;
+        // console.log("Comments posted successfully", newComment);
+        return newData;
+    } catch (error) {
+            console.log("Error gotten from postComments function: ", error);
+        }
+}
+
+commentForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nameForm = document.getElementById("name-input");
@@ -132,22 +169,49 @@ commentForm.addEventListener("submit", (e) => {
 
     const newComment = {
         name: nameInput,
-        timestamp: dateInput,
-        commentText: commentInput
+        // timestamp: dateInput,
+        // likes: 0,
+        // id: crypto.randomUUID(),
+        comment: commentInput
     };
 
-    commentsArray.push(newComment);
+    console.log("newComment", newComment);
 
-    commentsLists.replaceChildren();
+    // commentsArray.push(newComment);
+    // commentsLists.replaceChildren();
+    // for (let i = 0; i < commentsArray.length; i++) {
+    //     display(commentsArray[i]);
+    // }
 
-    for (let i = 0; i < commentsArray.length; i++) {
-        display(commentsArray[i]);
+    try {
+            const postedComment = await postComments(newComment);
+
+            await getComments();
+    } catch (error) {
+        console.log("Error Posting New Comments", error);
     }
 
-    // e.terget.reset();
 
     // Manually clears the form fields
     e.target.elements["name"].value = "";
     e.target.elements["comment"].value = "";
 
 });
+
+// Post the new comment to the API
+    // try {
+    //     const postedComment = await postComments(newComment);
+    //     console.log("Posted comment:", postedComment);
+
+    //     // Add the new comment to the local array (optional, depending on your use case)
+    //     commentsArray.push(postedComment);
+
+    //     // Clear the comments list and re-render
+    //     commentsLists.replaceChildren();
+    //     for (let i = 0; i < commentsArray.length; i++) {
+    //         display(commentsArray[i]);
+    //     }
+
+    //     // Manually clears the form fields
+    //     e.target.elements["name"].value = "";
+    //     e.target.elements["comment"].value = "";
