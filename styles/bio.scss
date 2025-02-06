@@ -1,9 +1,9 @@
 @use "./partials/global" as *;
-@use "./partials/nav" as *;
+// @use "./partials/nav" as *;
 @use "./partials/variables" as *;
 @use "./partials/mixins" as *;
 @use "./partials/typography" as *;
-@use "./partials/footer" as *;
+// @use "./partials/footer" as *;
 
 // Nav styling
 .nav {
@@ -430,6 +430,26 @@
             padding-bottom: 1rem;
             font-weight: 400;
         }
+
+        // &-like {
+        //     margin: 0.5rem 0 0 4rem;
+        //     height: 5.5vh;
+        //     border-radius: 0.25rem;
+        //     color: $primary-text-color;
+        //     background-color: $primary-bg-color;
+        //     // color: $primary-bg-color;
+        //     // background-color: $secondary-text-color;
+        //     font-weight: 500;
+        //     font-size: 1.1rem;
+        //     width: 12%;
+        //     cursor: pointer;
+        //     border-width: 0;
+
+        //     &-liked {
+        //         color: $primary-text-color;
+        //         background-color: $primary-bg-color;
+        //     }
+        // }
     }
 }
 

@@ -1,5 +1,7 @@
-const BASE_URL = "https://unit-2-project-api-25c1595833b2.herokuapp.com";
+import { BandSiteApi } from "../scripts/band-site-api.js";
+
 const API_KEY = "d170fe3b-635a-4ae9-8dd7-8ca996c6c013";
+const bandSiteApi = new BandSiteApi(API_KEY);
 
 // Helper function that creates div element and adds text into it
 function createDiv(className, text) {
@@ -34,18 +36,14 @@ async function dateFormat(rawDate) {
 
 // Helper function handles Selected shows state
 async function selectedShows(selected) {
-    const showsEl = document.querySelectorAll(selected); //".shows__show"
+    const showsEl = document.querySelectorAll(selected);
     showsEl.forEach((show) => {
         show.addEventListener("click", async (e) => {
             const clickedShow = e.currentTarget;
 
-            if (await clickedShow.classList.contains("shows__show--selected")) {
-                return;
-            }
+            if (await clickedShow.classList.contains("shows__show--selected")) { return }
 
-            showsEl.forEach((item) => {
-                item.classList.remove("shows__show--selected");
-            });
+            showsEl.forEach((item) => item.classList.remove("shows__show--selected") );
 
             await clickedShow.classList.add("shows__show--selected");
         });
@@ -74,8 +72,7 @@ showHousing.classList.add("shows__housing");
 // Get shows function
 async function getShows() {
     try {
-        const response = await axios.get(`${BASE_URL}/showdates?api_key=${API_KEY}`);
-        const shows = response.data;
+        const shows = await bandSiteApi.getShows();
 
         shows.forEach(async (show) => {
             const showContainer = document.createElement("div");
@@ -134,7 +131,7 @@ async function getShows() {
             selectedShows(".shows__show");
         });
     } catch (error) {
-        console.log("Error from getShows function: ", getShows);
+        console.log("Error from getShows function: ", error);
     }
 }
 getShows();

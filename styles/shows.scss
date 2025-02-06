@@ -1,9 +1,7 @@
 @use "./partials/global" as *;
-@use "./partials/nav" as *;
 @use "./partials/variables" as *;
 @use "./partials/mixins" as *;
 @use "./partials/typography" as *;
-@use "./partials/footer" as *;
 
 // Nav styling
 .nav {

@@ -1,5 +1,7 @@
-const BASE_URL = "https://unit-2-project-api-25c1595833b2.herokuapp.com";
+import { BandSiteApi } from "../scripts/band-site-api.js";
+
 const API_KEY = "d170fe3b-635a-4ae9-8dd7-8ca996c6c013";
+const bandSiteApi = new BandSiteApi(API_KEY);
 
 // Form section
 const commentForm = document.getElementById("comment-form");
@@ -78,30 +80,27 @@ function formatTimestamp(timestamp) {
 // Async function to Get comments
 async function getComments() {
     try {
-        const response = await axios.get(`${BASE_URL}/comments?api_key=${API_KEY}`);
-        const comments = await response.data;
+        const comments = await bandSiteApi.getComment();
 
         commentsLists.replaceChildren();
 
         comments.forEach((comment) => {
             display(comment);
         });
-
     } catch (error) {
-        console.log("Error gotten from getComments function: ", error);
+        console.log("Error from getComments in index-page.js: ", error);
     }
 }
 getComments();
 
 // Async function to Post comments
 async function postComments(newComment) {
-        try {
-        const response = await axios.post(`${BASE_URL}/comments?api_key=${API_KEY}`, newComment);
-        const newData = response.data;
-        return newData;
-        } catch (error) {
-            console.log(error);
-        }
+    try {
+        const response = await bandSiteApi.postComment(newComment);
+        return response.data;
+    } catch (error) {
+        console.log("Error from postComments in index-page.js", error);
+    }
 }
 
 // Event Listener when the form is submitted
@@ -134,31 +133,18 @@ commentForm.addEventListener("submit", async (e) => {
 
     const newComment = {
         name: nameInput,
-        // timestamp: dateInput,
-        // likes: 0,
-        // id: crypto.randomUUID(),
         comment: commentInput
     };
 
-    console.log("newComment", newComment);
-
-    // commentsArray.push(newComment);
-    // commentsLists.replaceChildren();
-    // for (let i = 0; i < commentsArray.length; i++) {
-    //     display(commentsArray[i]);
-    // }
-
     try {
-            const postedComment = await postComments(newComment);
+        await postComments(newComment);
 
-            await getComments();
+        await getComments();
     } catch (error) {
         console.log("Error Posting New Comments", error);
     }
 
-
     // Manually clears the form fields
     e.target.elements["name"].value = "";
     e.target.elements["comment"].value = "";
-
 });
