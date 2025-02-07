@@ -1,37 +1,9 @@
-const shows = [
-    {
-        date: "Mon Sept 09 2024",
-        venue: "Ronald Lane",
-        location: "San Francisco, CA",
-    },
-    {
-        date: "Tues Sept 17 2024",
-        venue: "Pier 3 East",
-        location: "San Francisco, CA",
-    },
-    {
-        date: "Sat Oct 12 2024",
-        venue: "View Lounge",
-        location: "San Francisco, CA",
-    },
-    {
-        date: "Sat Nov 16 2024",
-        venue: "Hyatt Agency",
-        location: "San Francisco, CA",
-    },
-    {
-        date: "Fri Nov 29 2024",
-        venue: "Moscow Center",
-        location: "San Francisco, CA",
-    },
-    {
-        date: "Wed Dec 18 2024",
-        venue: "Press Club",
-        location: "San Francisco, CA",
-    },
-];
+import { BandSiteApi } from "../scripts/band-site-api.js";
 
-// Helper function
+const API_KEY = "d170fe3b-635a-4ae9-8dd7-8ca996c6c013";
+const bandSiteApi = new BandSiteApi(API_KEY);
+
+// Helper function that creates div element and adds text into it
 function createDiv(className, text) {
     const divEl = document.createElement("div");
     divEl.classList.add(className);
@@ -40,6 +12,43 @@ function createDiv(className, text) {
     return divEl;
 }
 
+// Helper date function that formats time
+async function dateFormat(rawDate) {
+    const formatDate = new Date(rawDate);
+
+    // Converts to day
+    const weekday = ["Sun","Mon","Tues","Wed","Thu","Fri","Sat"];
+    let day = weekday[formatDate.getUTCDay()];
+
+    // Converts to months
+    const months = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+    let month = months[formatDate.getUTCMonth()];
+
+    // Converts to days
+    let dayNum = formatDate.getUTCDate();
+
+    // Converts to year
+    let year = formatDate.getUTCFullYear();
+
+    // console.log(day, month, dayNum, year);
+    return `${day} ${month} ${dayNum} ${year}`;
+}
+
+// Helper function handles Selected shows state
+async function selectedShows(selected) {
+    const showsEl = document.querySelectorAll(selected);
+    showsEl.forEach((show) => {
+        show.addEventListener("click", async (e) => {
+            const clickedShow = e.currentTarget;
+
+            if (await clickedShow.classList.contains("shows__show--selected")) { return }
+
+            showsEl.forEach((item) => item.classList.remove("shows__show--selected") );
+
+            await clickedShow.classList.add("shows__show--selected");
+        });
+    });
+}
 
 const showDetails = document.querySelector(".shows__details");
 
@@ -60,74 +69,69 @@ showDetails.appendChild(showHeaders);
 const showHousing = document.createElement("div");
 showHousing.classList.add("shows__housing");
 
+// Get shows function
+async function getShows() {
+    try {
+        const shows = await bandSiteApi.getShows();
 
-for (let i = 0; i < shows.length; i++) {
-    const showContainer = document.createElement("div");
-    showContainer.classList.add("shows__show");
+        shows.forEach(async (show) => {
+            const showContainer = document.createElement("div");
+            showContainer.classList.add("shows__show");
 
-    // Date
-    const dateSection = document.createElement("section");
-    dateSection.classList.add("shows__dates");
+            // Date
+            const dateSection = document.createElement("section");
+            dateSection.classList.add("shows__dates");
 
-    const dateHeader = createDiv("shows__dates-header", "DATE");
-    const dateDiv = createDiv("shows__dates-date", shows[i].date);
+            const formattedDate = await dateFormat(show.date);
 
-    dateSection.appendChild(dateHeader);
-    dateSection.appendChild(dateDiv);
+            const dateHeader = createDiv("shows__dates-header", "DATE");
+            const dateDiv = createDiv("shows__dates-date", formattedDate);
 
-    // Venue
-    const venueSection = document.createElement("section");
-    venueSection.classList.add("shows__venue");
+            dateSection.appendChild(dateHeader);
+            dateSection.appendChild(dateDiv);
 
-    const venueHeader = createDiv("shows__venue-header", "VENUE");
-    const venueDiv = createDiv("shows__venue-venue", shows[i].venue);
+            // Venue
+            const venueSection = document.createElement("section");
+            venueSection.classList.add("shows__venue");
 
-    venueSection.appendChild(venueHeader);
-    venueSection.appendChild(venueDiv);
+            const venueHeader = createDiv("shows__venue-header", "VENUE");
+            const venueDiv = createDiv("shows__venue-venue", show.place);
 
-    // Location
-    const locationSection = document.createElement("section");
-    locationSection.classList.add("shows__location");
+            venueSection.appendChild(venueHeader);
+            venueSection.appendChild(venueDiv);
 
-    const locationHeader = createDiv("shows__location-header", "LOCATION");
-    const locationDiv = createDiv("shows__location-location", shows[i].location);
+            // Location
+            const locationSection = document.createElement("section");
+            locationSection.classList.add("shows__location");
 
-    locationSection.appendChild(locationHeader);
-    locationSection.appendChild(locationDiv);
+            const locationHeader = createDiv("shows__location-header", "LOCATION");
+            const locationDiv = createDiv("shows__location-location", show.location);
 
-    // Buttons
-    const buttonEl = document.createElement("button");
-    buttonEl.classList.add("shows__button");
-    buttonEl.textContent = "BUY TICKETS"
+            locationSection.appendChild(locationHeader);
+            locationSection.appendChild(locationDiv);
 
-    // Putting all(date, venue, location, buttons)
-    // inside different divs(.shows__show)
-    showContainer.appendChild(dateSection);
-    showContainer.appendChild(venueSection);
-    showContainer.appendChild(locationSection);
-    showContainer.appendChild(buttonEl);
+            // Buttons
+            const buttonEl = document.createElement("button");
+            buttonEl.classList.add("shows__button");
+            buttonEl.textContent = "BUY TICKETS"
 
-    showHousing.appendChild(showContainer);
+            // Putting all(date, venue, location, buttons)
+            // inside different divs(.shows__show)
+            showContainer.appendChild(dateSection);
+            showContainer.appendChild(venueSection);
+            showContainer.appendChild(locationSection);
+            showContainer.appendChild(buttonEl);
 
-    // Attaching them all to the shows__details
-    showDetails.appendChild(showHousing);
-}
+            showHousing.appendChild(showContainer);
 
-// Selected function on shows
-const showsEl = document.querySelectorAll(".shows__show");
+            // Attaching them all to the shows__details
+            showDetails.appendChild(showHousing);
 
-showsEl.forEach((show) => {
-    show.addEventListener("click", (e) => {
-        const clickedShow = e.currentTarget;
-
-        if (clickedShow.classList.contains("shows__show--selected")) {
-            return;
-        }
-
-        showsEl.forEach((item) => {
-            item.classList.remove("shows__show--selected");
+            // Handles selected state
+            selectedShows(".shows__show");
         });
-
-        clickedShow.classList.add("shows__show--selected");
-    });
-});
+    } catch (error) {
+        console.log("Error from getShows function: ", error);
+    }
+}
+getShows();

@@ -1,20 +1,7 @@
-const commentsArray = [
-    {
-        name: "John Doe",
-        timestamp: "2025-01-29 10:15:00",
-        commentText: "This is a great post! The way you broke down the topic made it really easy to understand. I appreciate the effort you put into providing detailed insights and examples. Keep up the fantastic work!"
-    },
-    {
-        name: "Jane Smith",
-        timestamp: "2025-01-29 11:45:30",
-        commentText: "I really enjoyed reading this article. It's clear that you did thorough research before writing it. The examples you provided were very relatable, and I found myself learning new things as I read through. Thank you for such informative content!"
-    },
-    {
-        name: "Alex Johnson",
-        timestamp: "2025-01-29 13:20:10",
-        commentText: "Interesting perspective! I hadn't thought of it that way before. The way you approached this topic from multiple angles really made me rethink some of my previous assumptions. I'll definitely be sharing this with my friends!"
-    }
-];
+import { BandSiteApi } from "../scripts/band-site-api.js";
+
+const API_KEY = "d170fe3b-635a-4ae9-8dd7-8ca996c6c013";
+const bandSiteApi = new BandSiteApi(API_KEY);
 
 // Form section
 const commentForm = document.getElementById("comment-form");
@@ -22,20 +9,7 @@ const commentForm = document.getElementById("comment-form");
 // Comment - List section
 const commentsLists = document.getElementById("comments-lists");
 
-// Loops through the comments in the array
-for (let i = 0; i < commentsArray.length; i++) {
-    display(commentsArray[i]);
-
-    //  Checks if this is the last comment
-    if (i === commentsArray.length - 1) {
-        const commentsContainers = document.getElementsByClassName("comments__lists-containers");
-        // Gets the last container in the collection
-        const lastContainer = commentsContainers[commentsContainers.length - 1];
-        lastContainer.classList.add("comments__lists-containers--border-bottom");
-    }
-}
-
-// Helper function
+// Helper function that creates div element
 function createDiv(className, text) {
     const divEl = document.createElement("div");
     divEl.classList.add(className);
@@ -58,7 +32,65 @@ function display(comment) {
 
     const commentsName = createDiv("comments__lists-name", comment.name);
     const commentsDate = createDiv("comments__lists-date", formatTimestamp(comment.timestamp));
-    const commentsComment = createDiv("comments__lists-comment", comment.commentText);
+    const commentsComment = createDiv("comments__lists-comment", comment.comment);
+
+    // Like Button
+    const commentsLike = document.createElement("button");
+    commentsLike.classList.add("comments__lists-like");
+
+    // Img button inside the like button
+    const imgElLike = document.createElement("img");
+    imgElLike.classList.add("comments__lists-icon");
+    imgElLike.setAttribute("src", "../assets/icons/SVG/icon-like.svg");
+    imgElLike.setAttribute("alt", "Like Icon");
+
+    // Span element inside the like button
+    const spanElLike = document.createElement("span");
+    spanElLike.classList.add("comments__lists-count");
+    spanElLike.innerText = `${comment.likes || 0}`
+
+    // Appends img and span to like button
+    commentsLike.appendChild(imgElLike);
+    commentsLike.appendChild(spanElLike);
+
+    // Event listener on the like button
+    commentsLike.addEventListener("click", async () => {
+        try {
+            const updatedComment = await bandSiteApi.likeComment(comment.id);
+            
+            const likeCountSpan = commentsLike.querySelector(".comments__lists-count");
+            likeCountSpan.textContent = updatedComment.likes;
+        } catch (error) {
+            console.error("Error liking comment:", error);
+        }
+    });
+
+    // Delete Button
+    const commentsDelete = document.createElement("button");
+    commentsDelete.classList.add("comments__lists-delete");
+
+    // Img button inside the delete button
+    const imgEl = document.createElement("img");
+    imgEl.classList.add("comments__lists-delete-icon");
+    imgEl.setAttribute("src", "../assets/icons/SVG/icon-delete.svg");
+    imgEl.setAttribute("alt", "Delete Icon");
+
+    // Appends the image button to the delete button
+    commentsDelete.appendChild(imgEl);
+
+    // Event listener on the delete button
+    commentsDelete.addEventListener("click", async () => {
+        try {
+            await bandSiteApi.deleteComment(comment.id);
+            
+            const commentContainer = document.querySelector(".comments__lists-containers");
+            if (commentContainer) {
+                commentContainer.remove();
+            }
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+        }
+    });
 
     commentsContainer.appendChild(commentsImage);
     commentsContainer.appendChild(commentsName);
@@ -67,6 +99,8 @@ function display(comment) {
     // This puts the commentsArray in ascending order of timestamp
     commentsContainers.prepend(commentsComment);
     commentsContainers.prepend(commentsContainer);
+    commentsContainers.appendChild(commentsLike);
+    commentsContainers.appendChild(commentsDelete);
 
     commentsLists.prepend(commentsContainers);
 }
@@ -74,8 +108,8 @@ function display(comment) {
 // Function formats timestamp
 function formatTimestamp(timestamp) {
     const now = new Date(); // Current time
-    const commentDate = new Date(timestamp); // Convert the comment's timestamp to a Date object
-    const timeDifference = now - commentDate; // Difference in milliseconds
+    const commentDate = new Date(timestamp); // Convert the comment's timestamp to a Date
+    const timeDifference = now - (commentDate - 1000); // Difference in milliseconds.
 
     // Convert time difference to seconds, minutes, hours, days, etc.
     const seconds = Math.floor(timeDifference / 1000);
@@ -103,7 +137,34 @@ function formatTimestamp(timestamp) {
     }
 }
 
-commentForm.addEventListener("submit", (e) => {
+// Async function to Get comments
+async function getComments() {
+    try {
+        const comments = await bandSiteApi.getComment();
+
+        commentsLists.replaceChildren();
+
+        comments.forEach((comment) => {
+            display(comment);
+        });
+    } catch (error) {
+        console.log("Error from getComments in index-page.js: ", error);
+    }
+}
+getComments();
+
+// Async function to Post comments
+async function postComments(newComment) {
+    try {
+        const response = await bandSiteApi.postComment(newComment);
+        return response.data;
+    } catch (error) {
+        console.log("Error from postComments in index-page.js", error);
+    }
+}
+
+// Event Listener when the form is submitted
+commentForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const nameForm = document.getElementById("name-input");
@@ -114,7 +175,7 @@ commentForm.addEventListener("submit", (e) => {
     commentForm.classList.remove("comments__error");
     
 
-    // These values are gotten from the form
+    // Values are gotten from the form
     const nameInput = e.target.elements.name.value;
     const commentInput = e.target.elements.comment.value;
 
@@ -132,22 +193,18 @@ commentForm.addEventListener("submit", (e) => {
 
     const newComment = {
         name: nameInput,
-        timestamp: dateInput,
-        commentText: commentInput
+        comment: commentInput
     };
 
-    commentsArray.push(newComment);
+    try {
+        await postComments(newComment);
 
-    commentsLists.replaceChildren();
-
-    for (let i = 0; i < commentsArray.length; i++) {
-        display(commentsArray[i]);
+        await getComments();
+    } catch (error) {
+        console.log("Error Posting New Comments", error);
     }
-
-    // e.terget.reset();
 
     // Manually clears the form fields
     e.target.elements["name"].value = "";
     e.target.elements["comment"].value = "";
-
 });

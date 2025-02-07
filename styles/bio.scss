@@ -1,9 +1,7 @@
 @use "./partials/global" as *;
-@use "./partials/nav" as *;
 @use "./partials/variables" as *;
 @use "./partials/mixins" as *;
 @use "./partials/typography" as *;
-@use "./partials/footer" as *;
 
 // Nav styling
 .nav {
@@ -429,6 +427,41 @@
             margin: 0 0 0 4rem;
             padding-bottom: 1rem;
             font-weight: 400;
+        }
+
+        &-like {
+            background-color: $primary-text-color;
+            border: none;
+            cursor: pointer;
+            float: right;
+            position: relative;
+            margin-left: 0.5rem;
+            margin-right: 1.2rem;
+
+            @include tablet-breakpoint {
+                margin: 0;
+                margin-left: 0.5rem;
+                margin-right: 1.2rem;
+            }
+        }
+
+        &-count {
+            font-size: 0.7rem;
+            position: absolute;
+            top: -59%;
+            right: -42%;
+
+            @include tablet-breakpoint {
+                font-size: 0.8rem;
+            }
+        }
+
+        &-delete {
+            float: right;
+            background-color: $primary-text-color;
+            border: none;
+            cursor: pointer;
+            padding-bottom: 0.7rem;
         }
     }
 }
