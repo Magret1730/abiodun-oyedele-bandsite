@@ -34,6 +34,64 @@ function display(comment) {
     const commentsDate = createDiv("comments__lists-date", formatTimestamp(comment.timestamp));
     const commentsComment = createDiv("comments__lists-comment", comment.comment);
 
+    // Like Button
+    const commentsLike = document.createElement("button");
+    commentsLike.classList.add("comments__lists-like");
+
+    // Img button inside the like button
+    const imgElLike = document.createElement("img");
+    imgElLike.classList.add("comments__lists-icon");
+    imgElLike.setAttribute("src", "../assets/icons/SVG/icon-like.svg");
+    imgElLike.setAttribute("alt", "Like Icon");
+
+    // Span element inside the like button
+    const spanElLike = document.createElement("span");
+    spanElLike.classList.add("comments__lists-count");
+    spanElLike.innerText = `${comment.likes || 0}`
+
+    // Appends img and span to like button
+    commentsLike.appendChild(imgElLike);
+    commentsLike.appendChild(spanElLike);
+
+    // Event listener on the like button
+    commentsLike.addEventListener("click", async () => {
+        try {
+            const updatedComment = await bandSiteApi.likeComment(comment.id);
+            
+            const likeCountSpan = commentsLike.querySelector(".comments__lists-count");
+            likeCountSpan.textContent = updatedComment.likes;
+        } catch (error) {
+            console.error("Error liking comment:", error);
+        }
+    });
+
+    // Delete Button
+    const commentsDelete = document.createElement("button");
+    commentsDelete.classList.add("comments__lists-delete");
+
+    // Img button inside the delete button
+    const imgEl = document.createElement("img");
+    imgEl.classList.add("comments__lists-delete-icon");
+    imgEl.setAttribute("src", "../assets/icons/SVG/icon-delete.svg");
+    imgEl.setAttribute("alt", "Delete Icon");
+
+    // Appends the image button to the delete button
+    commentsDelete.appendChild(imgEl);
+
+    // Event listener on the delete button
+    commentsDelete.addEventListener("click", async () => {
+        try {
+            await bandSiteApi.deleteComment(comment.id);
+            
+            const commentContainer = document.querySelector(".comments__lists-containers");
+            if (commentContainer) {
+                commentContainer.remove();
+            }
+        } catch (error) {
+            console.error("Error deleting comment:", error);
+        }
+    });
+
     commentsContainer.appendChild(commentsImage);
     commentsContainer.appendChild(commentsName);
     commentsContainer.appendChild(commentsDate);
@@ -41,6 +99,8 @@ function display(comment) {
     // This puts the commentsArray in ascending order of timestamp
     commentsContainers.prepend(commentsComment);
     commentsContainers.prepend(commentsContainer);
+    commentsContainers.appendChild(commentsLike);
+    commentsContainers.appendChild(commentsDelete);
 
     commentsLists.prepend(commentsContainers);
 }
@@ -115,7 +175,7 @@ commentForm.addEventListener("submit", async (e) => {
     commentForm.classList.remove("comments__error");
     
 
-    // These values are gotten from the form
+    // Values are gotten from the form
     const nameInput = e.target.elements.name.value;
     const commentInput = e.target.elements.comment.value;
 

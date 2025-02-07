@@ -625,6 +625,40 @@ body {
   padding-bottom: 1rem;
   font-weight: 400;
 }
+.comments__lists-like {
+  background-color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  float: right;
+  position: relative;
+  margin-left: 0.5rem;
+  margin-right: 1.2rem;
+}
+@media (min-width: 768px) {
+  .comments__lists-like {
+    margin: 0;
+    margin-left: 0.5rem;
+    margin-right: 1.2rem;
+  }
+}
+.comments__lists-count {
+  font-size: 0.7rem;
+  position: absolute;
+  top: -59%;
+  right: -42%;
+}
+@media (min-width: 768px) {
+  .comments__lists-count {
+    font-size: 0.8rem;
+  }
+}
+.comments__lists-delete {
+  float: right;
+  background-color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  padding-bottom: 0.7rem;
+}
 
 .footer {
   background-color: #323232;
