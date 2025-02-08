@@ -144,6 +144,9 @@ async function getComments() {
 
         commentsLists.replaceChildren();
 
+        // Sort
+        comments.sort((a, b) => a.timestamp - b.timestamp);
+
         comments.forEach((comment) => {
             display(comment);
         });

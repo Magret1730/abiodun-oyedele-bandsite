@@ -347,6 +347,12 @@
                 border: .0625rem solid $primary-bg-color;
                 outline: none;
             }
+
+            @include tablet-breakpoint {
+                height: 20vh;
+                width: 100%;
+                resize: none;
+            }
         }
     }
 
@@ -358,6 +364,7 @@
         background-color: $primary-bg-color;
         font-weight: 500;
         font-size: 1.1rem;
+        cursor: pointer;
 
         @include tablet-breakpoint {
             margin-top: 1rem;

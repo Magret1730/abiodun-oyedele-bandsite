@@ -412,6 +412,7 @@ body {
   margin-top: 1rem;
   font-weight: 500;
   font-size: 0.9375rem;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .shows__button {
